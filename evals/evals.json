@@ -1,0 +1,25 @@
+{
+  "skill_name": "khub-query",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "What is the performance improvement of the new model mentioned in the quick-ref?",
+      "expected_output": "The response should contain a claim from quick-ref.md with inline attribution, e.g., '... ([[Page Title]])'."
+    },
+    {
+      "id": 1,
+      "prompt": "Find information about the entities and concepts related to Transformer architectures.",
+      "expected_output": "The response should include results from grepping sources, entities, and concepts, with inline attribution."
+    },
+    {
+      "id": 2,
+      "prompt": "Based on the existing wiki, what are the common limitations of the models discussed?",
+      "expected_output": "The response should use [SYNTHESIS] for claims combining multiple pages and use inline attribution."
+    },
+    {
+      "id": 3,
+      "prompt": "What is the impact of the 'Super-Quantum' technology on current hardware?",
+      "expected_output": "Since this topic doesn't exist, the response should contain '[UNCERTAIN — not found in wiki]' or similar fallback text."
+    }
+  ]
+}

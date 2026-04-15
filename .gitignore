@@ -1,0 +1,5 @@
+# Exclude all PDF files (copyrighted papers and private documents)
+*.pdf
+
+# Claude Code tool configuration (local only)
+.claude/
