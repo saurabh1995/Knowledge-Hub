@@ -157,3 +157,10 @@ _Grep tip: `grep "^## \[" wiki/log.md | tail -10`_
   - **Iteration reduction:** 35% fewer iterations at Gaussian points (BVP1: 5056 vs 7845 Pegasus); 20% fewer (BVP2: 13258 vs 16593)
 - Pages created: [[concepts/solver-strategies-at-gaussian-points]]
 - Pages updated: [[wiki/index.md]], [[wiki/log.md]]
+
+## [2026-04-15] query | Deepened wiki for proposal/article writing
+
+- Added `## Mathematical formulation` sections to 8 concept pages (LIF/RLIF/LMU/HSN equations, Lemaitre–Chaboche constitutive equations, MAML inner/outer loop + QAT, XNOR-popcount, LSTM gates + LMU state-space, FEM residual + NN replacement, REIIS physics loss)
+- Deepened 3 thin source pages with architecture tables, exact speedup numbers, accuracy tables, and energy data extracted from raw PDFs: [[sources/spiking-rnn-neuromorphic-cmame-2023]], [[sources/meta-learning-hybrid-spiking-npj-2026]], [[sources/spiking-nn-viscoplastic-fem-cmame-2024]]
+- Updated CLAUDE.md schema to include `## Mathematical formulation` as a standard optional concept page section
+- Updated CLAUDE.md QUERY workflow to check `## Mathematical formulation` sections for writing-support queries

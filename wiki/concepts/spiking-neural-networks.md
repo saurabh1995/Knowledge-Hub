@@ -3,7 +3,7 @@ title: "Spiking Neural Networks"
 type: concept
 tags: [SNN, neuromorphic, third-generation, LIF, RLIF, LMU, energy-efficiency, spikes]
 created: 2026-04-06
-updated: 2026-04-06
+updated: 2026-04-15
 ---
 **Third-generation neural networks that communicate through discrete spike signals, enabling energy-efficient deployment on neuromorphic hardware.**
 
@@ -54,6 +54,61 @@ Used in: CMAME 2023, CMAME 2024, EWCO 2024, NPJ 2024.
 | CMAME 2024 | Xylo-Av2 (SynSense) | Energy performance |
 | EWCO 2024 | Xylo-Av2 (SynSense) | Energy reduction to ~1/1000 |
 | NPJ 2026 | Loihi 2 | QAT for integer deployment |
+
+## Mathematical formulation
+
+### LIF neuron (CMAME 2023, Eq. 1–2; CMAME 2024, Eq. 34–35)
+
+Discrete-time membrane potential update (forward Euler of the RC-circuit ODE):
+
+$$V^t_{a,(l)} = \beta_{a,(l)}\, V^{t-1}_{a,(l)} + W_{a,(l)}\, z^t_{l-1} - (\varphi_s)^{t-1}_{(l)}\, V^{\text{thr}}_{a,(l)}$$
+
+Fire condition and reset:
+
+$$\varphi_s = \begin{cases} 1 & V^t_{a,(l)} \ge V^{\text{thr}}_{a,(l)} \\ 0 & V^t_{a,(l)} < V^{\text{thr}}_{a,(l)} \end{cases}$$
+
+- $\beta_{a,(l)}$: membrane decay rate (learnable); $W_{a,(l)}$: input weights; $z^t_{l-1}$: previous layer output; $V^{\text{thr}}$: threshold potential (learnable).
+- The reset term $(\varphi_s)^{t-1} V^{\text{thr}}$ fires when the threshold is crossed; otherwise the neuron integrates without firing.
+- Learnable parameters: $\Theta_{\text{LIF}} = \{W_{a,(l)},\, \beta_{a,(l)},\, V^{\text{thr}}_{a,(l)}\}$.
+
+### RLIF neuron (CMAME 2024)
+
+Same as LIF but with an added recurrent weight $R^{(t)}$ on the previous spiking output:
+
+$$V^t_{a,(l)} = \beta\, V^{t-1}_{a,(l)} + W\, z^t_{l-1} + R^{(t)}\, (\varphi_s)^{t-1}_{a,(l)} - (\varphi_s)^{t-1}\, V^{\text{thr}}$$
+
+Learnable parameters: $\Theta_{\text{RLIF}} = \{W^{(t)},\, R^{(t)},\, \beta,\, V^{\text{thr}}\}$.
+
+### Spiking LMU (CMAME 2023, Eq. 7–8)
+
+The Legendre Memory Unit compresses long sequences via a state-space ODE:
+
+$$\dot{m}(t) = A\, m(t) + B\, u(t), \qquad m^t = \bar{A}\, m^{t-1} + \bar{B}\, u^t$$
+
+- $m(t) \in \mathbb{R}^n$: memory state vector of dimension $n$ (100 in CMAME 2023).
+- $A \in \mathbb{R}^{n \times n}$, $B \in \mathbb{R}^{n \times 1}$: derived from Padé approximants of the delay transfer function.
+- $\bar{A}, \bar{B}$: zero-order hold (ZOH) discretisation.
+- The spiking variant (SLMU) passes the memory through spike thresholding before propagation.
+- Working memory: $h^t = e_x\, x^t + e_m\, m^t$ where $e_x, e_m$ are learnable scalars.
+
+### Hybrid Spiking Neuron — HSN (NPJ 2026, Eq. 9–12)
+
+Unlike LIF (binary output), HSN propagates the real-valued membrane potential of active neurons:
+
+$$V^t_{l,(d)} = \beta_{l,(d)}\, V^{t-1}_{l,(d)} + \sum_j W_{lj,(d)}\, z^t_{j,(d-1)} - \varphi_s(V^{t-1}_{l,(d)})\, V^{\text{thr}}_{l,(d)}$$
+
+$$S^t_{l,(d)} = \varphi_s(V^t_{l,(d)}), \qquad O^t_{l,(d)} = V^t_{l,(d)} \cdot S^t_{l,(d)}$$
+
+- $S^t$: binary spike (0 or 1); $O^t$: graded output — real-valued potential if active, zero if silent.
+- This combines 3rd-gen sparsity with 2nd-gen continuous-value regression capability.
+- Learnable: $\Theta_{\text{HSN}} = \{W^{(d)},\, \beta_{l,(d)},\, V^{\text{thr}}_{l,(d)}\}$.
+- On Loihi 2: implemented with 32-bit integer outputs.
+
+### Surrogate gradient (all SNN variants)
+
+The non-differentiable $\varphi_s$ is replaced by the arcus tangent surrogate during backpropagation:
+
+$$\widetilde{\varphi}_s'(V) = \frac{1}{\pi}\frac{1}{1+(V\pi)^2}$$
 
 ## See also
 [[concepts/neuromorphic-computing]], [[concepts/sustainable-ai]], [[concepts/self-learning-nn]], [[concepts/recurrent-neural-networks-in-mechanics]], [[sources/spiking-rnn-neuromorphic-cmame-2023]], [[sources/spiking-nn-viscoplastic-fem-cmame-2024]], [[sources/snn-engineering-mechanics-ewco-2024]], [[sources/snn-nonlinear-regression-neuromorphic-npj]], [[sources/meta-learning-hybrid-spiking-npj-2026]]

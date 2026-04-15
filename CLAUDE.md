@@ -56,6 +56,7 @@ sources: 0          # number of raw sources this page draws from (omit for non-s
 After frontmatter, pages follow this structure:
 - **One-line summary** (bold, right after frontmatter)
 - Body content (headings, prose, lists, tables as appropriate)
+- **## Mathematical formulation** *(concept pages only, optional)* — canonical equations with all variables defined; source every formula to its originating paper with section/table reference; use LaTeX math fences (`$$...$$`); place immediately before `## See also`
 - **## See also** section at the bottom with `[[wikilinks]]` to related pages
 
 **Wikilinks:** always use `[[Page Title]]` (matching the `title` frontmatter) for
@@ -174,6 +175,7 @@ When Saurabh asks a question:
 
 1. **Grep `wiki/quick-ref.md` first** — it contains all key claims, models, hardware, and concept→source mappings. If it answers the question, stop here.
 2. If more detail is needed, **grep in parallel**: run Grep simultaneously across `wiki/sources/`, `wiki/concepts/`, and `wiki/entities/` — do not run these sequentially.
+   - **Writing-support queries** (proposal drafting, article writing, "how does X work mathematically", "equations for X"): after the parallel grep, also explicitly grep for `## Mathematical formulation` in `wiki/concepts/` — these sections contain canonical equations needed for grant proposals and journal articles.
 3. Only read a full page if parallel grep excerpts are still insufficient.
 4. **Verification pass before answering** — after drafting the answer, grep for every specific number, model name, and date you intend to state. If a grep returns no match in the wiki, drop the claim or mark it `[UNCERTAIN — not found in wiki]`. Do not state it as fact.
 5. **Synthesise with inline per-claim attribution** — every factual claim must carry its source immediately: `Claim X ([[Page]])`. Do not list citations only at the footer. Any claim derived by combining ≥2 pages (rather than directly stated in one) must be prefixed `[SYNTHESIS]` so the user knows it is model inference, not a wiki fact. **Only cite pages whose titles appear in `wiki/index.md`.** If you would cite a page that is not indexed, direct the user to the raw source file instead or declare a gap — never emit a wikilink that does not exist.

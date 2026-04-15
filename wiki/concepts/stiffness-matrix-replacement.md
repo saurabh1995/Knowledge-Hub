@@ -3,7 +3,7 @@ title: "Stiffness Matrix Replacement"
 type: concept
 tags: [FEM, stiffness, surrogate, neural-networks, nonlinear, plasticity]
 created: 2026-04-06
-updated: 2026-04-06
+updated: 2026-04-15
 ---
 **An approach within NN-enhanced FEM where the element tangent stiffness matrix — not just the constitutive law — is predicted directly by a neural network, eliminating Newton iterations.**
 
@@ -35,6 +35,40 @@ Because the NN is trained at the element level on a specific geometry, a scaling
 - Currently demonstrated on 1D (truss, beam) and 2D (plate) elements.
 - Scaling strategy limited to geometrically linear problems.
 - Network must be retrained for significantly different deformation patterns.
+
+## Mathematical formulation
+
+### Classical FEM nonlinear solve
+
+At each load increment, Newton–Raphson solves the global residual:
+
+$$\mathbf{R}(\mathbf{d}) = \mathbf{K}^{\text{int}}(\mathbf{d})\,\mathbf{d} - \mathbf{f}^{\text{ext}} = \mathbf{0}$$
+
+$$\mathbf{d}^{(k+1)} = \mathbf{d}^{(k)} - \left[\mathbf{K}(\mathbf{d}^{(k)})\right]^{-1} \mathbf{R}(\mathbf{d}^{(k)})$$
+
+The tangent stiffness $\mathbf{K}$ is assembled from element contributions:
+
+$$\mathbf{K}_e = \int_{\Omega_e} \mathbf{B}^T\, \mathbf{C}\, \mathbf{B}\, \mathrm{d}V$$
+
+where $\mathbf{B}$ is the strain-displacement matrix and $\mathbf{C}$ is the material tangent (from constitutive integration at each Gauss point).
+
+### NN replacement
+
+The neural network directly outputs the converged element internal force and stiffness for a given strain history:
+
+$$\left[\mathbf{K}_e,\, \mathbf{F}_e^{\text{int}}\right] = \mathcal{N}\!\left(\boldsymbol{\varepsilon}^{\text{history}}\right)$$
+
+This eliminates both the inner Gauss-point integration loop and the Newton–Raphson outer iterations. The global assembly proceeds normally:
+
+$$\mathbf{K} = \mathbf{A}_e\, \mathbf{K}_e, \qquad \mathbf{F}^{\text{int}} = \mathbf{A}_e\, \mathbf{F}_e^{\text{int}}$$
+
+where $\mathbf{A}_e$ denotes the assembly operator.
+
+### Sobolev loss ensures stiffness accuracy (MRC 2021, IJNME 2022)
+
+$$\mathcal{L}_{\text{Sobolev}} = \|\mathbf{F}_{\text{pred}} - \mathbf{F}_{\text{actual}}\|^2 + \lambda\,\|\mathbf{K}_{\text{pred}} - \mathbf{K}_{\text{actual}}\|^2$$
+
+Without the second term, the NN learns forces but not stiffness — Newton iterations diverge. See [[concepts/sobolev-training]] for the full formulation.
 
 ## See also
 [[concepts/neural-network-enhanced-fem]], [[concepts/sobolev-training]], [[sources/smart-stiffness-1d-fem-mrc-2021]], [[sources/intelligent-stiffness-plate-beam-ijnme-2022]], [[sources/lstm-stiffness-plate-pamm-2022]]
