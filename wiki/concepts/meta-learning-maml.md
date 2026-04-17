@@ -23,8 +23,8 @@ In [[concepts/self-learning-nn]], the model must quickly converge during online 
 Tandale & Stoffel apply MAML to **Hybrid Spiking Neural Networks (HSNNs)**:
 - Tasks = different loading sequences in viscoplastic FE simulations.
 - Meta-pretraining with combined physics-based + data-driven loss.
-- Result: MAML-pretrained HSNNs outperform first-order pretrained HSNNs in convergence speed and accuracy.
-- Quantization-Aware Training (QAT) applied post-meta-training for Loihi 2 deployment.
+- Result: MAML-pretrained HSNNs outperform first-order pretrained HSNNs in convergence speed and accuracy (60 epochs to early stopping vs. 100 for non-meta baselines).
+- **Quantization-Aware Training (QAT)** applied *during* meta-training for Loihi 2 deployment: simulates quantization in forward pass while using Straight-Through Estimators (STE) for backprop. Trade-off: guarantees hardware compatibility but increases training time and test loss (~67% more epochs needed).
 
 ## Relation to other concepts
 - MAML improves the initialisation of [[concepts/self-learning-nn]] models.
@@ -60,8 +60,10 @@ Outer loop is triggered periodically on pretraining sequences to prevent catastr
 
 $$\tilde{m} = \left\lfloor \frac{m - m_{\min}}{s_m} \right\rceil, \qquad s_m = \frac{m_{\max} - m_{\min}}{2^n - 1}$$
 
-- $n$: number of bits (32-bit integer on Loihi 2); $s_m$: scaling factor.
-- Applied to both weights and activations of the HSN layers post-meta-training.
+- **Bit-widths**: 8 bits for weights, 16 bits for spiking outputs and membrane potential. 
+- **Training-time quantization**: Quantization applied during forward pass; backprop uses Straight-Through Estimators (STE) for gradient flow.
+- **Performance impact**: Unlike Post-Training Quantization (PTQ), QAT allows adaptation to low-precision arithmetic. However, in MAML context, second-order gradients **amplify biased approximations** from both STE (for quantization) and surrogate gradients (for spikes). Result: meta-update drives parameters to regions appearing good under biased approximations but performing worse under true quantized dynamics. Empirically: **QAT HSN requires 100 epochs vs. 60 for non-quantized, with higher test loss** ([[sources/meta-learning-hybrid-spiking-npj-2026]], Table 1).
+- **Hardware-deployment benefit**: Despite training-time penalty, QAT ensures model retains knowledge on Loihi 2 neuromorphic hardware, enabling practical neuromorphic deployment with only final dense layer CPU/GPU adaptation.
 
 ## See also
 [[concepts/self-learning-nn]], [[concepts/spiking-neural-networks]], [[sources/meta-learning-hybrid-spiking-npj-2026]]

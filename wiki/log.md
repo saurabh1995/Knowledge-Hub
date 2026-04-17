@@ -185,3 +185,21 @@ _Grep tip: `grep "^## \[" wiki/log.md | tail -10`_
 - Deepened 3 thin source pages with architecture tables, exact speedup numbers, accuracy tables, and energy data extracted from raw PDFs: [[sources/spiking-rnn-neuromorphic-cmame-2023]], [[sources/meta-learning-hybrid-spiking-npj-2026]], [[sources/spiking-nn-viscoplastic-fem-cmame-2024]]
 - Updated CLAUDE.md schema to include `## Mathematical formulation` as a standard optional concept page section
 - Updated CLAUDE.md QUERY workflow to check `## Mathematical formulation` sections for writing-support queries
+
+---
+
+## [2026-04-17] query | Quantization impact on graded spiking network learning ability (NPJ 2026)
+
+- Query: how quantization affects learning ability of HSN + MAML model from NPJ 2026
+- Initial wiki answer was incomplete: quick-ref.md mentioned QAT but lacked quantization performance metrics
+- Raw source verification: extracted detailed QAT impact from `raw/Papers/Tandale_&_Stoffel_NPJ_UNCONV_2026.pdf` using pdftotext
+- Key findings verified from raw source:
+  - **Bit-widths**: 8-bit weights, 16-bit integer spiking outputs/membrane potential (not uniform 32-bit as wiki summary stated)
+  - **Performance degradation**: QAT HSN + MAML requires 100 outer-loop epochs vs. 60 for non-quantized (~67% increase); higher test loss (Table 1)
+  - **Mechanism**: Meta/second-order gradients amplify biased approximations from Straight-Through Estimators (STE) for quantization + surrogate gradients for spikes; meta-update drives parameters to regions appearing good under bias but worse under true quantized dynamics
+  - **Hardware tradeoff**: QAT ensures knowledge retention on Loihi 2 deployment; only final dense layer requires CPU/GPU adaptation during inference
+- Pages updated:
+  - [[sources/meta-learning-hybrid-spiking-npj-2026]]: expanded Table 1 with full RMSE values, added detailed QAT performance impact section, added QAT penalty to limitations
+  - [[concepts/meta-learning-maml]]: updated application section and QAT subsection with empirical performance data and mechanism explanation
+  - [[wiki/quick-ref.md]]: added QAT training overhead metric (+67% epochs)
+- Answer filed as new wiki page: no (integrated into existing source + concept pages)

@@ -72,6 +72,7 @@ updated: 2026-04-10
 | Energy reduction (SNN vs CPU) | 1/1000 | snn-engineering-mechanics-ewco-2024 |
 | Speedup (BNN on FPGA vs CPU) | 60% | fpga-bnn-viscoplastic-mrc-2025 |
 | Speedup (BNN on FPGA vs RTX 4090) | 26% | fpga-bnn-viscoplastic-mrc-2025 |
+| QAT training overhead (HSN + MAML) | +67% epochs; higher test loss | meta-learning-hybrid-spiking-npj-2026 |
 | Regression accuracy (lumbar spine) | R²=0.988 | lumbar-spine-biomechanics-rnn-abme-2023 |
 | Cell classification accuracy | >91% | cnn-tenogenic-differentiation-cmpb-2021 |
 | Dissertation length | 240 pages | dissertation-sustainable-brain-inspired-2024 |

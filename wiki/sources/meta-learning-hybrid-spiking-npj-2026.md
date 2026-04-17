@@ -31,7 +31,19 @@ $$S^t_{l,(d)} = \varphi_s(V^t_{l,(d)}), \qquad O^t_{l,(d)} = V^t_{l,(d)} \cdot S
 
 $$\tilde{m} = \left\lfloor \frac{m - m_{\min}}{s_m} \right\rceil, \qquad s_m = \frac{m_{\max} - m_{\min}}{2^n - 1}$$
 
-$n = 32$ bits for Loihi 2 deployment.
+**Bit-widths**: 8 bits for weights; 16 bits for integer spiking outputs and membrane potential. Dynamic quantization — scale $s_m$ computed based on incoming data at each forward pass.
+
+**Quantization strategy**: Unlike Post-Training Quantization (PTQ) which can cause catastrophic performance loss, QAT trains the model *with simulated quantization*, allowing weights to adapt to low-precision arithmetic and providing smoother transition from 32-bit float (GPU) to hardware-restricted integer format (Loihi 2).
+
+### Performance impact of QAT
+
+Despite QAT's benefits for hardware deployment, **quantization degrades learning ability**:
+- **Non-quantized HSN + MAML**: 60 epochs, achieves convergence at early stopping criterion
+- **QAT HSN + MAML**: 100 epochs, ~67% longer training, higher test error
+
+**Mechanism of degradation**: Meta/second-order gradients in MAML amplify biased approximations introduced by two sources: (1) Straight-Through Estimators (STE) used for quantization backprop, and (2) surrogate gradients for spiking neurons. The outer loop meta-gradient update propagates these biased approximations back to the initialized parameters, driving them to regions where performance appears good under biased but worse under true quantized dynamics.
+
+**Hardware-accuracy tradeoff**: Despite accuracy loss, QAT is essential — it ensures the model retains knowledge when deployed on Loihi 2. In deployment, only the final dense layer requires CPU/GPU adaptation; all spiking layers run inference-only on the neuromorphic chip.
 
 ## Training details
 
@@ -43,14 +55,15 @@ $n = 32$ bits for Loihi 2 deployment.
 
 ## Comparative results (Table 1)
 
-| Model | Outer loop loss | Test loss | Epochs to stop |
-|-------|----------------|-----------|---------------|
-| RNN (with 10% dropout) | low | **competitive** | ~60 (early stop) |
-| **HSN + MAML (proposed)** | low | **competitive** | ~60 (early stop) |
-| RNN (no dropout) | lowest | poor (overfit) | 100 |
-| SNN + MAML | higher | poor | 100 |
+| Model | Outer loop loss | Inner loop loss | Test loss | Epochs to stop |
+|-------|----------------|-----------------|-----------|---------------|
+| RNN (with 10% dropout) | 2.3e-2 | 2.7e-2 | 9.71e-3 | 59 (early stop) |
+| **HSN + MAML (proposed, non-quantized)** | 1.6e-2 | 2.31e-2 | **4.381e-2** | 60 (early stop) |
+| RNN (no dropout) | 3.6e-3 | 1.57e-2 | 1.8e-2 | 100 |
+| SNN + MAML | 1.18e-2 | 2.4e-2 | 7.81e-3 | 100 |
+| **QAT HSN + MAML (quantized, 8-bit weights, 16-bit outputs)** | 1.44e-2 | 3.78e-2 | higher | 100 |
 
-HSNN with MAML = best balance of accuracy and energy efficiency.
+**Key observation**: HSNN with MAML (non-quantized) achieves best balance of accuracy and energy efficiency. QAT causes **40 epoch increase** and **higher test loss** due to meta/second-order gradient amplification of quantization bias.
 
 ## Speedup and iteration reduction (Tables 2–3)
 
@@ -69,6 +82,7 @@ Speedup is conjectural (Python in-house solver). More complex BVPs with larger i
 
 ## Limitations / caveats
 - Second-order MAML is computationally expensive at pretraining time.
+- **QAT performance penalty**: Quantization-Aware Training causes ~67% increase in outer loop epochs and higher test loss vs. non-quantized HSN. This is a known tradeoff between neuromorphic hardware deployment and training-time accuracy. Mechanism: meta-gradients amplify biased approximations from STE and surrogate gradients.
 - Validated on plate BVPs only; 3D not demonstrated.
 - Speedup gains modest at this BVP scale; larger inelastic zones needed to show full potential.
 - Task distribution design (which loading sequences to meta-train on) has no principled method yet.
