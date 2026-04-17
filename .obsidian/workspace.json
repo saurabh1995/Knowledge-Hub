@@ -11,14 +11,10 @@
             "id": "550b2707a94b134e",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "wiki/sources/physics-based-rnn-viscoplastic-cmame-2022.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "physics-based-rnn-viscoplastic-cmame-2022"
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
             }
           }
         ]
@@ -78,7 +74,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 331.5
   },
   "right": {
     "id": "dd938e045b480537",
@@ -185,6 +181,21 @@
   },
   "active": "550b2707a94b134e",
   "lastOpenFiles": [
+    "wiki/concepts/neural-network-enhanced-fem.md",
+    "wiki/concepts/self-learning-nn.md",
+    "wiki/concepts/neuromorphic-computing.md",
+    "README.md",
+    "README.md.tmp.29248.1776327955087",
+    "wiki/entities/Saurabh Balkrishna Tandale.md",
+    "wiki/concepts/spiking-neural-networks.md",
+    "wiki/concepts/stiffness-matrix-replacement.md",
+    "wiki/concepts/sustainable-ai.md",
+    "wiki/sources/snn-nonlinear-regression-neuromorphic-npj.md",
+    "wiki/concepts/meta-learning-maml.md",
+    "wiki/concepts/attention-mechanism.md",
+    "wiki/concepts/sobolev-training.md",
+    "wiki/concepts/binary-neural-networks.md.tmp.26936.1776234562756",
+    "wiki/sources/physics-based-rnn-viscoplastic-cmame-2022.md",
     "wiki/log.md.tmp.30960.1776076236877",
     "wiki/concepts/solver-strategies-at-gaussian-points.md",
     "wiki/concepts/solver-strategies-at-gaussian-points.md.tmp.30960.1776076181970",
@@ -196,9 +207,6 @@
     "CLAUDE.md.tmp.30932.1775827123081",
     "wiki/concepts/nn-generation-replacement-levels.md",
     "CLAUDE.md.tmp.508.1775819501068",
-    "CLAUDE.md.tmp.508.1775819496022",
-    "CLAUDE.md.tmp.508.1775819491441",
-    "wiki/quick-ref.md.tmp.508.1775819466152",
     "wiki/entities/Hyun Lee.md",
     "wiki/entities/Gözde Dursun.md",
     "wiki/entities/Vasileios Polydoras.md",
@@ -209,18 +217,6 @@
     "wiki/index.md",
     "wiki/log.md",
     "wiki/concepts/physics-informed-neural-networks.md",
-    "CLAUDE.md schema.md",
-    "CLAUDE.md",
-    "entities/saurabh-balkrishna-tandale.md",
-    "wiki/entities/Saurabh Balkrishna Tandale.md",
-    "wiki/quick-ref.md",
-    "wiki/sources/dissertation-sustainable-brain-inspired-2024.md",
-    "wiki/concepts/recurrent-neural-networks-in-mechanics.md",
-    "wiki/sources/snn-nonlinear-regression-neuromorphic-npj.md",
-    "wiki/sources/meta-learning-hybrid-spiking-npj-2026.md",
-    "wiki/concepts/sobolev-training.md",
-    "wiki/concepts/cnn-cell-imaging.md",
-    "wiki/concepts/fpga-acceleration-nn.md",
     "raw/assets/vasileios_p11.png",
     "raw/assets/vasileios_p10.png",
     "raw/assets/vasileios_p8.png",

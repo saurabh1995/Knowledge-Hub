@@ -9,10 +9,10 @@ updated: 2026-04-15
 
 ## Key distinction from standard approaches
 
-| Approach | Training phase | Deployment phase |
-|----------|---------------|-----------------|
-| Data-driven NN | Offline on labelled dataset | Frozen weights |
-| PINN | Offline with physics loss | Frozen weights |
+| Approach             | Training phase                    | Deployment phase                    |
+| -------------------- | --------------------------------- | ----------------------------------- |
+| Data-driven NN       | Offline on labelled dataset       | Frozen weights                      |
+| PINN                 | Offline with physics loss         | Frozen weights                      |
 | **Self-learning NN** | Offline pretraining (hybrid loss) | **Online updates via physics loss** |
 
 ## Mechanism

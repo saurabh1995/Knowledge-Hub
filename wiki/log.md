@@ -158,6 +158,27 @@ _Grep tip: `grep "^## \[" wiki/log.md | tail -10`_
 - Pages created: [[concepts/solver-strategies-at-gaussian-points]]
 - Pages updated: [[wiki/index.md]], [[wiki/log.md]]
 
+## [2026-04-16] query | Speedup comparison — EWCO 2024, CMAME 2024, self-learning CMAME 2022
+
+- Query: speedup results from EWCO 2024, CMAME 2024, and physics-based self-learning CMAME 2022
+- Sources consulted: [[sources/snn-engineering-mechanics-ewco-2024]], [[sources/spiking-nn-viscoplastic-fem-cmame-2024]], [[sources/physics-based-rnn-viscoplastic-cmame-2022]]
+- Key findings:
+  - CMAME 2022 (REIIS): ~29% single element, ~40% multi-element plate BVP vs classical FEM
+  - CMAME 2024 (LIF+RLIF SNN): 24.02% (BVP1), 30.98% (BVP2), 17.54% (combined nonlinearity) vs classical FEM; 111× energy vs GPU, 3,161× vs CPU on Xylo-Av2
+  - EWCO 2024 (Spiking LMU, pseudo-explicit): >40% vs classical FEM; same energy figures as CMAME 2024
+  - Cross-paper note: EWCO > CMAME 2024 in speedup, but BVPs differ — not directly comparable
+  - Gap: CMAME 2022 and CMAME 2024 per-BVP figures not yet in quick-ref.md
+
+## [2026-04-16] query | MAML speedup at Gaussian points
+
+- Query: "Speed up obtained through MAML at Gaussian points"
+- Sources consulted: [[concepts/solver-strategies-at-gaussian-points]], [[sources/meta-learning-hybrid-spiking-npj-2026]]
+- Key findings:
+  - Iteration reduction: 35% fewer (BVP1: 7,845 → 5,056) and 20% fewer (BVP2: 16,593 → 13,258) vs. Pegasus solver (Table 3, NPJ 2026)
+  - Wall-clock speedup: 19% for BVP1, 7.3% for BVP2 (gap due to NN forward pass cost > single classical iteration)
+  - MAML enables generalisability (5 training sequences vs. ~30 for transfer learning); iteration reduction is a property of MAML-HSNN in inference mode
+  - Note: 19% / 7.3% wall-clock figures present in concept page without explicit paper section; recommend verifying against raw PDF if citing in manuscript
+
 ## [2026-04-15] query | Deepened wiki for proposal/article writing
 
 - Added `## Mathematical formulation` sections to 8 concept pages (LIF/RLIF/LMU/HSN equations, Lemaitre–Chaboche constitutive equations, MAML inner/outer loop + QAT, XNOR-popcount, LSTM gates + LMU state-space, FEM residual + NN replacement, REIIS physics loss)
