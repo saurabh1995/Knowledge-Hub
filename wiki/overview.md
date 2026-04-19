@@ -3,7 +3,7 @@ title: "Overview"
 type: overview
 tags: [synthesis, computational-mechanics, FEM, SNN, neuromorphic, self-learning]
 created: 2026-04-06
-updated: 2026-04-07
+updated: 2026-04-19
 ---
 **Evolving synthesis of all knowledge in this KnowledgeHub — covering Saurabh Tandale's body of work on neural network-enhanced FEM, neuromorphic computing, FPGA acceleration, and CNN-based cell imaging.**
 
@@ -57,25 +57,6 @@ Key progression:
 
 ---
 
-## Key conceptual threads
-
-| Concept | Appears across |
-|---------|---------------|
-| [[concepts/neural-network-enhanced-fem]] | All 12 papers |
-| [[concepts/sobolev-training]] | MRC 2021, IJNME 2022, PAMM 2022 |
-| [[concepts/physics-informed-neural-networks]] | CMAME 2022, MRC 2024, CMAME 2024, EWCO 2024 |
-| [[concepts/self-learning-nn]] | CMAME 2022, MRC 2024, CMAME 2024, EWCO 2024, NPJ 2026 |
-| [[concepts/recurrent-neural-networks-in-mechanics]] | CMAME 2022, PAMM 2022, ABME 2023, CM 2023, MRC 2024 |
-| [[concepts/spiking-neural-networks]] | CMAME 2023, CMAME 2024, EWCO 2024, NPJ 2024, NPJ 2026 |
-| [[concepts/neuromorphic-computing]] | CMAME 2023, CMAME 2024, EWCO 2024, NPJ 2024, NPJ 2026 |
-| [[concepts/sustainable-ai]] | CMAME 2023, CMAME 2024, EWCO 2024, NPJ 2024 |
-| [[concepts/viscoplasticity-modelling]] | CMAME 2022, CMAME 2024, EWCO 2024, MRC 2024, NPJ 2026 |
-| [[concepts/meta-learning-maml]] | NPJ 2026 |
-
----
-
----
-
 ## Phase 4 — FPGA acceleration and cell imaging (2020–2025, parallel threads)
 
 Two parallel research directions expand the scope beyond the FEM-SNN core:
@@ -122,10 +103,13 @@ The 240-page dissertation (defended Sept 12, 2024) unifies all work from Phases 
 | [[concepts/binary-neural-networks]] | MRC 2025 |
 | [[concepts/fpga-acceleration-nn]] | MRC 2025 |
 | [[concepts/cnn-cell-imaging]] | CDBME 2020, CMPB 2021, PAMM 2024 |
+| [[concepts/lemaitre-chaboche-parameters]] | CMAME 2022, CMAME 2024, MRC 2024, NPJ 2026, MRC 2025 |
+| [[concepts/nn-generation-replacement-levels]] | IJNME 2022, CMAME 2024, EWCO 2024, NPJ 2026 |
+| [[concepts/solver-strategies-at-gaussian-points]] | CMAME 2022, CMAME 2023, CMAME 2024, EWCO 2024, NPJ 2026 |
 
 ---
 
-## Open questions / frontiers (as of 2026-04-07)
+## Open questions / frontiers (as of 2026-04-19)
 1. **3D generalisation**: all FEM validations are on plate elements; 3D solid elements are untouched.
 2. **Complex geometries**: academic BVPs dominate; real engineering structures not yet demonstrated.
 3. **Other materials**: viscoplasticity (Lemaitre–Chaboche) dominates; hyperelasticity, damage-only, multi-physics not yet covered.

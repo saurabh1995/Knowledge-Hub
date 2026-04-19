@@ -77,6 +77,15 @@ updated: 2026-04-19
 | Cell classification accuracy | >91% | cnn-tenogenic-differentiation-cmpb-2021 | [[sources/cnn-tenogenic-differentiation-cmpb-2021]] — Key claims & evidence / Table 1 |
 | Dissertation length | 240 pages | dissertation-sustainable-brain-inspired-2024 | [[sources/dissertation-sustainable-brain-inspired-2024]] — Key points |
 | PhD defended | 2024-09-12 | dissertation-sustainable-brain-inspired-2024 | [[sources/dissertation-sustainable-brain-inspired-2024]] — Summary line |
+| Speedup (REIIS, single element) | ~29% | physics-based-rnn-viscoplastic-cmame-2022 | [[sources/physics-based-rnn-viscoplastic-cmame-2022]] — Key claims & evidence |
+| Speedup (REIIS, multi-element plate BVP) | ~40% | physics-based-rnn-viscoplastic-cmame-2022 | [[sources/physics-based-rnn-viscoplastic-cmame-2022]] — Key claims & evidence |
+| Speedup (LIF+RLIF SNN, BVP1) | 24.02% | spiking-nn-viscoplastic-fem-cmame-2024 | [[sources/spiking-nn-viscoplastic-fem-cmame-2024]] — Speedup results |
+| Speedup (LIF+RLIF SNN, BVP2) | 30.98% | spiking-nn-viscoplastic-fem-cmame-2024 | [[sources/spiking-nn-viscoplastic-fem-cmame-2024]] — Speedup results |
+| Speedup (LIF+RLIF SNN, combined nonlinearity) | 17.54% | spiking-nn-viscoplastic-fem-cmame-2024 | [[sources/spiking-nn-viscoplastic-fem-cmame-2024]] — Speedup results |
+| MAML iteration reduction vs Pegasus (BVP1) | 35% fewer (7,845→5,056 iters) | meta-learning-hybrid-spiking-npj-2026 | Table 3 — [[sources/meta-learning-hybrid-spiking-npj-2026]] |
+| MAML iteration reduction vs Pegasus (BVP2) | 20% fewer (16,593→13,258 iters) | meta-learning-hybrid-spiking-npj-2026 | Table 3 — [[sources/meta-learning-hybrid-spiking-npj-2026]] |
+| MAML wall-clock speedup (BVP1) | 19% | meta-learning-hybrid-spiking-npj-2026 | [[sources/meta-learning-hybrid-spiking-npj-2026]] — [verify section before manuscript citation] |
+| MAML wall-clock speedup (BVP2) | 7.3% | meta-learning-hybrid-spiking-npj-2026 | [[sources/meta-learning-hybrid-spiking-npj-2026]] — [verify section before manuscript citation] |
 
 ---
 
@@ -114,6 +123,8 @@ See [[concepts/lemaitre-chaboche-parameters]] for the full parameter table and p
 | [[concepts/fpga-acceleration-nn]] | FPGAs as reconfigurable NN inference hardware; complement to neuromorphic ASICs |
 | [[concepts/cnn-cell-imaging]] | CNN/YoloV8 for non-invasive stem cell and chondrocyte classification from phase-contrast images |
 | [[concepts/nn-generation-replacement-levels]] | ANN/LSTM outputs K+F directly (element level); brain-inspired SNNs output σ+C at Gauss points; K+F assembled classically |
+| [[concepts/lemaitre-chaboche-parameters]] | Numerical parameter sets for Lemaitre–Chaboche model; two distinct steel campaigns + copper; full comparison table across papers |
+| [[concepts/solver-strategies-at-gaussian-points]] | Evolution from classical iterative solvers (Newton–Raphson, Pegasus) to self-learning and MAML-based NN solvers at Gauss points |
 
 ---
 
@@ -137,6 +148,8 @@ See [[concepts/lemaitre-chaboche-parameters]] for the full parameter table and p
 | attention-mechanism | rnn-cnn-shock-wave-plates-cm-2023 |
 | sustainable-ai | snn-engineering-mechanics-ewco-2024, spiking-rnn-neuromorphic, meta-learning-hybrid-spiking, dissertation |
 | lemaitre-chaboche-parameters | physics-based-rnn-viscoplastic-cmame-2022, fpga-bnn-viscoplastic-mrc-2025, spiking-nn-viscoplastic-fem-cmame-2024, rnn-plane-stress-damage-mrc-2024, meta-learning-hybrid-spiking-npj-2026 |
+| nn-generation-replacement-levels | intelligent-stiffness-plate-beam-ijnme-2022, spiking-nn-viscoplastic-fem-cmame-2024, snn-engineering-mechanics-ewco-2024, meta-learning-hybrid-spiking-npj-2026 |
+| solver-strategies-at-gaussian-points | physics-based-rnn-viscoplastic-cmame-2022, spiking-rnn-neuromorphic-cmame-2023, spiking-nn-viscoplastic-fem-cmame-2024, snn-engineering-mechanics-ewco-2024, meta-learning-hybrid-spiking-npj-2026 |
 
 ---
 
@@ -173,7 +186,7 @@ See [[concepts/lemaitre-chaboche-parameters]] for the full parameter table and p
 | Vasileios Polydoras | Lead author | fpga-bnn-viscoplastic-mrc-2025 |
 | Hyun Lee | Lead author | cell-preserving-chondrocyte-pamm-2024 |
 
-_Entity pages exist for: [[Saurabh Balkrishna Tandale]], [[Marcus Stoffel]], [[Bernd Markert]], [[Franz Bamer]], [[Vasileios Polydoras]], [[Gözde Dursun]], [[Hyun Lee]]._
+_Entity pages exist for: [[Saurabh Balkrishna Tandale]], [[Marcus Stoffel]], [[Bernd Markert]], [[Franz Bamer]], [[Vasileios Polydoras]], [[Gözde Dursun]], [[Hyun Lee]], [[Nadja Blomeyer]], [[Rutwik Gulakala]]._
 
 ---
 
@@ -231,6 +244,9 @@ Strict normalisation layer for queries. Use this to map user wording to canonica
 | FPGA acceleration | FPGA board; reconfigurable logic; PYNQ Z2; Xilinx; FINN | [[concepts/fpga-acceleration-nn]], [[sources/fpga-bnn-viscoplastic-mrc-2025]] | Hardware-routing term distinct from neuromorphic ASICs. |
 | Binary Neural Network (BNN) | BNN; binary net; binary weights; XNOR-popcount | [[concepts/binary-neural-networks]], [[sources/fpga-bnn-viscoplastic-mrc-2025]] | Canonical term for FPGA-oriented 1-bit inference. |
 | Viscoplasticity modelling | viscoplastic; plastic corrector; return-mapping; Lemaitre-Chaboche | [[concepts/viscoplasticity-modelling]], [[concepts/lemaitre-chaboche-parameters]] | Material-law routing term for constitutive questions. |
+| Physics loss / physics-based loss | physics loss; physics-based loss; physics constraint; residual loss; equation residual | [[concepts/self-learning-nn]], [[concepts/physics-informed-neural-networks]] | Use when query is about training signal, not hardware or architecture. |
+| Neural surrogate / surrogate model | surrogate; neural surrogate; material surrogate; NN surrogate; data-driven surrogate | [[concepts/neural-network-enhanced-fem]] | General umbrella term for any NN replacing a FEM subroutine. |
+| Constitutive law / integration | constitutive law; constitutive model; constitutive integration; material law; material model | [[concepts/viscoplasticity-modelling]], [[concepts/nn-generation-replacement-levels]] | Gauss-point-level routing; distinguishes from element-level stiffness replacement. |
 
 ---
 
@@ -260,6 +276,7 @@ Broad topic routing after term normalisation. Exact aliases and spelling variant
 | Tandale, Stoffel, RWTH, IAM, PostDoc | [[Saurabh Balkrishna Tandale]] |
 | phase 1, early work, 2021–2022 | overview Phase 1; smart-stiffness-1d, intelligent-stiffness, lstm-stiffness |
 | phase 3, neuromorphic, 2023–2026 | overview Phase 3; spiking-rnn, spiking-nn-viscoplastic, snn-engineering-mechanics |
+| solver strategies, Gaussian point solver, Newton-Raphson vs MAML, iteration reduction, root-finding | [[concepts/solver-strategies-at-gaussian-points]], [[concepts/meta-learning-maml]] |
 
 ---
 

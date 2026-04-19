@@ -221,3 +221,32 @@ _Grep tip: `grep "^## \[" wiki/log.md | tail -10`_
 - Expanded [[Quick Reference]] with evidence locators for numeric claims, a strict alias/synonym index, `Common comparisons`, and `Query-derived facts`
 - Added ingest/lint maintenance rules so alias drift, thin quick-ref entries, and repeated query misses are surfaced and fixed earlier
 - Pages updated: [[Quick Reference]]
+
+---
+
+## [2026-04-19] lint | Full repo audit — 8 issues found and fixed
+
+- Audit scope: structural integrity (file counts, wikilinks, frontmatter), retrieval completeness (quick-ref.md gaps), and entity coverage
+- **Findings and fixes:**
+  1. Backfilled CMAME 2022 per-BVP speedup (~29% single element, ~40% multi-element plate) to quick-ref Key numeric claims — gap flagged in 2026-04-16 log but never patched
+  2. Backfilled CMAME 2024 per-BVP speedup (24.02% BVP1, 30.98% BVP2, 17.54% combined) to quick-ref Key numeric claims
+  3. Backfilled MAML iteration reduction (35% BVP1, 20% BVP2 vs Pegasus, Table 3 NPJ 2026) and wall-clock speedup (19%/7.3%, verify section before manuscript citation) to quick-ref Key numeric claims
+  4. Added `lemaitre-chaboche-parameters` and `solver-strategies-at-gaussian-points` to Concept definitions one-liner table (16→18 concepts covered)
+  5. Added `nn-generation-replacement-levels` and `solver-strategies-at-gaussian-points` to Concept→source mapping table (16→18 concepts covered)
+  6. Fixed `wiki/index.md` Concepts section header: `(17)` → `(18)`; updated last-updated date and page count (46→48)
+  7. Added 3 missing aliases to Alias/synonym index: "physics loss/physics-based loss", "surrogate/neural surrogate", "constitutive law/constitutive integration"
+  8. Added keyword routing row for "solver strategies, Gaussian point solver, Newton-Raphson vs MAML, iteration reduction" → [[concepts/solver-strategies-at-gaussian-points]]
+  9. Created entity stubs [[Nadja Blomeyer]] and [[Rutwik Gulakala]]; registered both in index.md and quick-ref.md collaborators section
+- Pages created: [[Nadja Blomeyer]], [[Rutwik Gulakala]]
+- Pages updated: [[Quick Reference]], [[index]]
+
+---
+
+## [2026-04-19] lint | Follow-up audit — structural and math formulation gaps
+
+- 4 further issues found and fixed:
+  1. **overview.md duplicate section removed**: `## Key conceptual threads` appeared twice (lines 60 and 108); older incomplete copy (10 concepts, "All 12 papers" count) removed; current copy (13→16 concepts) retained
+  2. **sobolev-training.md math reformatted**: `## Loss formulation` (plain code-block equations) converted to `## Mathematical formulation` with LaTeX `$$...$$` fences; section moved to canonical position immediately before `## See also`; updated date to 2026-04-19
+  3. **attention-mechanism.md math added**: `## Mathematical formulation` section added with full additive attention equations (alignment score, softmax weights, context vector, GRU decoder update); sourced to CM 2023 Section 3.2; updated date to 2026-04-19
+  4. **overview.md updated**: added [[concepts/lemaitre-chaboche-parameters]], [[concepts/nn-generation-replacement-levels]], [[concepts/solver-strategies-at-gaussian-points]] to Key conceptual threads table; updated "Open questions" date and frontmatter `updated` to 2026-04-19
+- Pages updated: [[Overview]], [[concepts/sobolev-training]], [[concepts/attention-mechanism]]
