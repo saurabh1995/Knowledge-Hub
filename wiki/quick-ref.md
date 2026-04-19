@@ -3,7 +3,7 @@ title: "Quick Reference"
 type: concept
 tags: [reference, lookup, performance]
 created: 2026-04-07
-updated: 2026-04-10
+updated: 2026-04-19
 ---
 **Flat facts table — primary grep target for queries. Update on every ingest.**
 
@@ -52,30 +52,54 @@ updated: 2026-04-10
 |-------|-------|-------|--------|
 | 1 — Smart stiffness | 2021–2022 | ANN/LSTM stiffness matrix replacement; Sobolev training | smart-stiffness-1d, intelligent-stiffness, lstm-stiffness-plate |
 | 2 — Physics-based self-learning | 2022–2024 | RNN material integration; physics loss; REIIS | physics-based-rnn, lumbar-spine, rnn-cnn-shock-wave, rnn-plane-stress-damage |
-| 3 — Neuromorphic / sustainable AI | 2023–2026 | SNN → neuromorphic chips; energy efficiency | spiking-rnn-neuromorphic, spiking-nn-viscoplastic, snn-engineering-mechanics, snn-nonlinear-regression, meta-learning-hybrid-spiking |
-| 4a — FPGA + BNN | 2025 | Binary NN on FPGA; speed vs GPU | fpga-bnn-viscoplastic |
-| 4b — CNN cell imaging | 2020–2024 | Phase-contrast microscopy; non-invasive classification | cnn-tenogenic-recognition, cnn-tenogenic-differentiation, cell-preserving-chondrocyte |
+| 3 — Neuromorphic / sustainable AI | 2023–2024 | SNN → neuromorphic chips; energy efficiency | spiking-rnn-neuromorphic, spiking-nn-viscoplastic, snn-engineering-mechanics, snn-nonlinear-regression |
+| 4 — Meta-learning + hardware diversification | 2025–2026 | MAML/HSN; FPGA+BNN; CNN cell imaging | meta-learning-hybrid-spiking (main), fpga-bnn-viscoplastic (4a), cnn-tenogenic + cell-preserving-chondrocyte (4b) |
 | Synthesis | 2024 | PhD dissertation unifying Phases 1–3 | dissertation-sustainable-brain-inspired |
 
 ---
 
 ## Key numeric claims
 
-| Claim | Value | Paper slug |
-|-------|-------|-----------|
-| Speedup (ANN, 1D FEM) | 41% | smart-stiffness-1d-fem-mrc-2021 |
-| Speedup (NN, truss/plate) | >90% | intelligent-stiffness-plate-beam-ijnme-2022 |
-| Speedup (LSTM, plate) | 90.6% | lstm-stiffness-plate-pamm-2022 |
-| Break-even (training amortised) | ~10 simulations | overview (Phases 1–2) |
-| Speedup (LIF+RLIF SNN) | >30% | spiking-nn-viscoplastic-fem-cmame-2024 |
-| Speedup (pseudo-explicit SNN) | >40% | snn-engineering-mechanics-ewco-2024 |
-| Energy reduction (SNN vs CPU) | 1/1000 | snn-engineering-mechanics-ewco-2024 |
-| Speedup (BNN on FPGA vs CPU) | 60% | fpga-bnn-viscoplastic-mrc-2025 |
-| Speedup (BNN on FPGA vs RTX 4090) | 26% | fpga-bnn-viscoplastic-mrc-2025 |
-| Regression accuracy (lumbar spine) | R²=0.988 | lumbar-spine-biomechanics-rnn-abme-2023 |
-| Cell classification accuracy | >91% | cnn-tenogenic-differentiation-cmpb-2021 |
-| Dissertation length | 240 pages | dissertation-sustainable-brain-inspired-2024 |
-| PhD defended | 2024-09-12 | dissertation-sustainable-brain-inspired-2024 |
+| Claim | Value | Paper slug | Evidence locator |
+|-------|-------|-----------|------------------|
+| Speedup (ANN, 1D FEM) | 41% | smart-stiffness-1d-fem-mrc-2021 | [[sources/smart-stiffness-1d-fem-mrc-2021]] — Key claims & evidence |
+| Speedup (NN, truss/plate) | >90% | intelligent-stiffness-plate-beam-ijnme-2022 | [[sources/intelligent-stiffness-plate-beam-ijnme-2022]] — Key claims & evidence |
+| Speedup (LSTM, plate) | 90.6% | lstm-stiffness-plate-pamm-2022 | [[sources/lstm-stiffness-plate-pamm-2022]] — Key claims & evidence |
+| Break-even (training amortised) | ~10 simulations | overview (Phases 1–2) | [[Overview]] — Phase 1 |
+| Speedup (LIF+RLIF SNN) | >30% | spiking-nn-viscoplastic-fem-cmame-2024 | [[sources/spiking-nn-viscoplastic-fem-cmame-2024]] — Speedup results |
+| Speedup (pseudo-explicit SNN) | >40% | snn-engineering-mechanics-ewco-2024 | [[sources/snn-engineering-mechanics-ewco-2024]] — Key claims & evidence |
+| Energy reduction (SNN vs CPU) | 1/1000 | snn-engineering-mechanics-ewco-2024 | [[sources/snn-engineering-mechanics-ewco-2024]] — Energy (Section 6.4) |
+| Speedup (BNN on FPGA vs CPU) | 60% | fpga-bnn-viscoplastic-mrc-2025 | [[sources/fpga-bnn-viscoplastic-mrc-2025]] — Hardware timing (Table 4) |
+| Speedup (BNN on FPGA vs RTX 4090) | 26% | fpga-bnn-viscoplastic-mrc-2025 | [[sources/fpga-bnn-viscoplastic-mrc-2025]] — Hardware timing (Table 4) |
+| QAT training overhead (HSN + MAML) | +67% epochs; higher test loss | meta-learning-hybrid-spiking-npj-2026 | [[sources/meta-learning-hybrid-spiking-npj-2026]] — Performance impact of QAT / Table 1 |
+| Regression accuracy (lumbar spine) | R²=0.988 | lumbar-spine-biomechanics-rnn-abme-2023 | [[sources/lumbar-spine-biomechanics-rnn-abme-2023]] — Key claims & evidence |
+| Cell classification accuracy | >91% | cnn-tenogenic-differentiation-cmpb-2021 | [[sources/cnn-tenogenic-differentiation-cmpb-2021]] — Key claims & evidence / Table 1 |
+| Dissertation length | 240 pages | dissertation-sustainable-brain-inspired-2024 | [[sources/dissertation-sustainable-brain-inspired-2024]] — Key points |
+| PhD defended | 2024-09-12 | dissertation-sustainable-brain-inspired-2024 | [[sources/dissertation-sustainable-brain-inspired-2024]] — Summary line |
+| Speedup (REIIS, single element) | ~29% | physics-based-rnn-viscoplastic-cmame-2022 | [[sources/physics-based-rnn-viscoplastic-cmame-2022]] — Key claims & evidence |
+| Speedup (REIIS, multi-element plate BVP) | ~40% | physics-based-rnn-viscoplastic-cmame-2022 | [[sources/physics-based-rnn-viscoplastic-cmame-2022]] — Key claims & evidence |
+| Speedup (LIF+RLIF SNN, BVP1) | 24.02% | spiking-nn-viscoplastic-fem-cmame-2024 | [[sources/spiking-nn-viscoplastic-fem-cmame-2024]] — Speedup results |
+| Speedup (LIF+RLIF SNN, BVP2) | 30.98% | spiking-nn-viscoplastic-fem-cmame-2024 | [[sources/spiking-nn-viscoplastic-fem-cmame-2024]] — Speedup results |
+| Speedup (LIF+RLIF SNN, combined nonlinearity) | 17.54% | spiking-nn-viscoplastic-fem-cmame-2024 | [[sources/spiking-nn-viscoplastic-fem-cmame-2024]] — Speedup results |
+| MAML iteration reduction vs Pegasus (BVP1) | 35% fewer (7,845→5,056 iters) | meta-learning-hybrid-spiking-npj-2026 | Table 3 — [[sources/meta-learning-hybrid-spiking-npj-2026]] |
+| MAML iteration reduction vs Pegasus (BVP2) | 20% fewer (16,593→13,258 iters) | meta-learning-hybrid-spiking-npj-2026 | Table 3 — [[sources/meta-learning-hybrid-spiking-npj-2026]] |
+| MAML wall-clock speedup (BVP1) | 19% | meta-learning-hybrid-spiking-npj-2026 | [[sources/meta-learning-hybrid-spiking-npj-2026]] — [verify section before manuscript citation] |
+| MAML wall-clock speedup (BVP2) | 7.3% | meta-learning-hybrid-spiking-npj-2026 | [[sources/meta-learning-hybrid-spiking-npj-2026]] — [verify section before manuscript citation] |
+| Computational gain (MRC 2024, Sample 1) | 12% | rnn-plane-stress-damage-mrc-2024 | [[sources/rnn-plane-stress-damage-mrc-2024]] — Section 5.2, Fig. 4 |
+| Computational gain (MRC 2024, Sample 2) | 14% | rnn-plane-stress-damage-mrc-2024 | [[sources/rnn-plane-stress-damage-mrc-2024]] — Section 5.2, Fig. 4 |
+| RMSE σ₁₁ (MRC 2024, plane stress LMU) | 1.3×10⁻³ MPa | rnn-plane-stress-damage-mrc-2024 | [[sources/rnn-plane-stress-damage-mrc-2024]] — Table 2 |
+| Energy (NPJ 2024, Loihi Layer 1) | 5.4072 nJ | snn-nonlinear-regression-neuromorphic-npj | [[sources/snn-nonlinear-regression-neuromorphic-npj]] — Table 3 |
+| Energy (NPJ 2024, CPU Layer 1) | 99,081 nJ | snn-nonlinear-regression-neuromorphic-npj | [[sources/snn-nonlinear-regression-neuromorphic-npj]] — Table 3 |
+| CPU/Loihi energy ratio (NPJ 2024, total) | 35,581.4× | snn-nonlinear-regression-neuromorphic-npj | [[sources/snn-nonlinear-regression-neuromorphic-npj]] — Table 4 |
+| GPU/Loihi energy ratio (NPJ 2024, total) | 1,176.33× | snn-nonlinear-regression-neuromorphic-npj | [[sources/snn-nonlinear-regression-neuromorphic-npj]] — Table 4 |
+| LSTM training epochs (ABME 2023) | 44,753 epochs | lumbar-spine-biomechanics-rnn-abme-2023 | [[sources/lumbar-spine-biomechanics-rnn-abme-2023]] — Table 2 |
+| LSTM architecture (ABME 2023) | 6 layers [64,64,128,128,256,256] units | lumbar-spine-biomechanics-rnn-abme-2023 | [[sources/lumbar-spine-biomechanics-rnn-abme-2023]] — Table 2 |
+| Attention enc-dec params (CM 2023) | 231,810 | rnn-cnn-shock-wave-plates-cm-2023 | [[sources/rnn-cnn-shock-wave-plates-cm-2023]] — Table 3 |
+| RMSE attention enc-dec (CM 2023, Fig. 14) | 0.03553 | rnn-cnn-shock-wave-plates-cm-2023 | [[sources/rnn-cnn-shock-wave-plates-cm-2023]] — Fig. 14 |
+| RMSE LSTM (CM 2023, Fig. 14) | 0.60136 | rnn-cnn-shock-wave-plates-cm-2023 | [[sources/rnn-cnn-shock-wave-plates-cm-2023]] — Fig. 14 |
+| Speedup (IJNME 2022, truss stiffness replacement) | 35.11% | intelligent-stiffness-plate-beam-ijnme-2022 | [[sources/intelligent-stiffness-plate-beam-ijnme-2022]] — Table 5 |
+| Speedup (IJNME 2022, beam stiffness replacement) | 41.14% | intelligent-stiffness-plate-beam-ijnme-2022 | [[sources/intelligent-stiffness-plate-beam-ijnme-2022]] — Table 7 |
+| Speedup (IJNME 2022, plate LSTM material) | 64.57% | intelligent-stiffness-plate-beam-ijnme-2022 | [[sources/intelligent-stiffness-plate-beam-ijnme-2022]] — Table 5 |
 
 ---
 
@@ -113,6 +137,10 @@ See [[concepts/lemaitre-chaboche-parameters]] for the full parameter table and p
 | [[concepts/fpga-acceleration-nn]] | FPGAs as reconfigurable NN inference hardware; complement to neuromorphic ASICs |
 | [[concepts/cnn-cell-imaging]] | CNN/YoloV8 for non-invasive stem cell and chondrocyte classification from phase-contrast images |
 | [[concepts/nn-generation-replacement-levels]] | ANN/LSTM outputs K+F directly (element level); brain-inspired SNNs output σ+C at Gauss points; K+F assembled classically |
+| [[concepts/lemaitre-chaboche-parameters]] | Numerical parameter sets for Lemaitre–Chaboche model; two distinct steel campaigns + copper; full comparison table across papers |
+| [[concepts/solver-strategies-at-gaussian-points]] | Evolution from classical iterative solvers (Newton–Raphson, Pegasus) to self-learning and MAML-based NN solvers at Gauss points |
+| [[concepts/transfer-learning]] | Fine-tuning of pre-trained NN for new tasks; requires ~30 sequences for FEM BVP adaptation vs 5 for MAML; fails with small biomedical datasets |
+| [[concepts/bounded-softplus-activation]] | Bounded softplus output layer on HSN ensuring Δεₚ lies within bracketing interval — combines NN speed with solver convergence guarantee |
 
 ---
 
@@ -136,6 +164,10 @@ See [[concepts/lemaitre-chaboche-parameters]] for the full parameter table and p
 | attention-mechanism | rnn-cnn-shock-wave-plates-cm-2023 |
 | sustainable-ai | snn-engineering-mechanics-ewco-2024, spiking-rnn-neuromorphic, meta-learning-hybrid-spiking, dissertation |
 | lemaitre-chaboche-parameters | physics-based-rnn-viscoplastic-cmame-2022, fpga-bnn-viscoplastic-mrc-2025, spiking-nn-viscoplastic-fem-cmame-2024, rnn-plane-stress-damage-mrc-2024, meta-learning-hybrid-spiking-npj-2026 |
+| nn-generation-replacement-levels | intelligent-stiffness-plate-beam-ijnme-2022, spiking-nn-viscoplastic-fem-cmame-2024, snn-engineering-mechanics-ewco-2024, meta-learning-hybrid-spiking-npj-2026 |
+| solver-strategies-at-gaussian-points | physics-based-rnn-viscoplastic-cmame-2022, spiking-rnn-neuromorphic-cmame-2023, spiking-nn-viscoplastic-fem-cmame-2024, snn-engineering-mechanics-ewco-2024, meta-learning-hybrid-spiking-npj-2026 |
+| transfer-learning | physics-based-rnn-viscoplastic-cmame-2022, cnn-tenogenic-differentiation-cmpb-2021, meta-learning-hybrid-spiking-npj-2026 |
+| bounded-softplus-activation | meta-learning-hybrid-spiking-npj-2026 |
 
 ---
 
@@ -172,7 +204,7 @@ See [[concepts/lemaitre-chaboche-parameters]] for the full parameter table and p
 | Vasileios Polydoras | Lead author | fpga-bnn-viscoplastic-mrc-2025 |
 | Hyun Lee | Lead author | cell-preserving-chondrocyte-pamm-2024 |
 
-_Entity pages exist for: [[Saurabh Balkrishna Tandale]], [[Marcus Stoffel]], [[Bernd Markert]], [[Franz Bamer]], [[Vasileios Polydoras]], [[Gözde Dursun]], [[Hyun Lee]]._
+_Entity pages exist for: [[Saurabh Balkrishna Tandale]], [[Marcus Stoffel]], [[Bernd Markert]], [[Franz Bamer]], [[Vasileios Polydoras]], [[Gözde Dursun]], [[Hyun Lee]], [[Nadja Blomeyer]], [[Rutwik Gulakala]]._
 
 ---
 
@@ -190,7 +222,57 @@ _Entity pages exist for: [[Saurabh Balkrishna Tandale]], [[Marcus Stoffel]], [[B
 
 ---
 
+## Common comparisons
+
+Short answers for cross-paper questions that recur. Use these before reopening multiple pages.
+
+| Comparison | Short answer | Go to | Evidence locator |
+|-----------|--------------|-------|------------------|
+| Neuromorphic vs FPGA for FEM neural surrogates | Neuromorphic hardware wins energy for spiking workloads; FPGA wins small-BNN latency; no same-BVP energy benchmark exists yet. | [[concepts/neuromorphic-computing]], [[concepts/fpga-acceleration-nn]], [[sources/fpga-bnn-viscoplastic-mrc-2025]] | [[concepts/fpga-acceleration-nn]] — Engineering mechanics context + Relationship to neuromorphic computing |
+| Self-learning vs meta-learning | Self-learning adapts online from physics loss; MAML meta-learning improves the initialisation so new BVPs need fewer task sequences and fewer Gaussian-point iterations. | [[concepts/self-learning-nn]], [[concepts/meta-learning-maml]], [[concepts/solver-strategies-at-gaussian-points]] | [[concepts/solver-strategies-at-gaussian-points]] — Comparison: self-learning vs. meta-learning |
+| Element-level ANN/LSTM vs Gauss-point SNN replacement | ANN/LSTM models output F and K directly at element level; brain-inspired SNNs output sigma and C at Gauss points, after which FEM assembles F and K classically. | [[concepts/nn-generation-replacement-levels]] | [[concepts/nn-generation-replacement-levels]] — Level 1 / Level 2 + Trade-off summary |
+
+---
+
+## Query-derived facts
+
+Reusable facts distilled from prior queries and raw-PDF backfills. Promote repeated answers here instead of re-reading the same source again.
+
+| Distilled fact | Answer | Go to | Evidence locator |
+|---------------|--------|-------|------------------|
+| Quantized HSN + MAML training penalty | QAT HSN + MAML needs 100 epochs instead of 60, with higher test loss; the penalty is accepted for Loihi 2 deployment. | [[concepts/meta-learning-maml]], [[sources/meta-learning-hybrid-spiking-npj-2026]] | [[sources/meta-learning-hybrid-spiking-npj-2026]] — Performance impact of QAT / Table 1 |
+| Solver families in the NPJ meta-learning article | The NPJ 2026 article discusses Newton-Raphson, Pegasus, false position, backward Euler, self-learning NN solvers, and MAML-pretrained HSNNs with bounded softplus output. | [[concepts/solver-strategies-at-gaussian-points]], [[sources/meta-learning-hybrid-spiking-npj-2026]] | [[concepts/solver-strategies-at-gaussian-points]] — Classical root-finding solvers; Meta-learning solvers; Bounded softplus activation |
+| What brain-inspired SNNs replace in FEM | Brain-inspired SNNs do not compute stiffness matrix/internal force directly; they replace constitutive integration at Gauss points and output stress plus tangent. | [[concepts/nn-generation-replacement-levels]], [[concepts/spiking-neural-networks]] | [[concepts/nn-generation-replacement-levels]] — Level 2 — Constitutive law replacement (SNN, brain-inspired) |
+
+---
+
+## Alias / synonym index
+
+Strict normalisation layer for queries. Use this to map user wording to canonical wiki terms before reading full pages.
+
+| Canonical term | Alias / synonym / variant | Go to | Notes |
+|---------------|---------------------------|-------|-------|
+| Meta-Learning (MAML) | MAML; meta-learning; meta learning; Model-Agnostic Meta-Learning | [[concepts/meta-learning-maml]], [[sources/meta-learning-hybrid-spiking-npj-2026]] | Canonical term for fast task adaptation in FEM questions. |
+| Quantisation-Aware Training (QAT) | QAT; quantization-aware training; quantisation-aware training; training-time quantization | [[concepts/meta-learning-maml]], [[sources/meta-learning-hybrid-spiking-npj-2026]] | Normalise US/UK spelling and acronym before searching deeper pages. |
+| Hybrid Spiking Neuron (HSN) | HSN; hybrid spiking neuron; hybrid spiking; HSNN | [[concepts/meta-learning-maml]], [[sources/meta-learning-hybrid-spiking-npj-2026]] | `HSNN` refers to a network built from HSN units. |
+| Neuromorphic computing | brain-inspired; neuromorphic; neuromorphic chip; Loihi; Loihi2; Loihi 2; Xylo; Xylo-Av2 | [[concepts/neuromorphic-computing]] | Use for hardware/paradigm routing before picking a specific chip page. |
+| Self-learning neural network | self-learning; online update; no labels; physics-only adaptation | [[concepts/self-learning-nn]] | Canonical term for online FEM adaptation using physics loss. |
+| Stiffness matrix replacement | direct K and F; stiffness replacement; tangent stiffness prediction | [[concepts/stiffness-matrix-replacement]], [[concepts/nn-generation-replacement-levels]] | Element-level ANN/LSTM surrogate path. |
+| Spiking neural networks | SNN; spike-based NN; spiking network; spiking LMU; LIF; RLIF | [[concepts/spiking-neural-networks]] | Use when the question is about spike-based model families rather than one hardware target. |
+| FPGA acceleration | FPGA board; reconfigurable logic; PYNQ Z2; Xilinx; FINN | [[concepts/fpga-acceleration-nn]], [[sources/fpga-bnn-viscoplastic-mrc-2025]] | Hardware-routing term distinct from neuromorphic ASICs. |
+| Binary Neural Network (BNN) | BNN; binary net; binary weights; XNOR-popcount | [[concepts/binary-neural-networks]], [[sources/fpga-bnn-viscoplastic-mrc-2025]] | Canonical term for FPGA-oriented 1-bit inference. |
+| Viscoplasticity modelling | viscoplastic; plastic corrector; return-mapping; Lemaitre-Chaboche | [[concepts/viscoplasticity-modelling]], [[concepts/lemaitre-chaboche-parameters]] | Material-law routing term for constitutive questions. |
+| Physics loss / physics-based loss | physics loss; physics-based loss; physics constraint; residual loss; equation residual | [[concepts/self-learning-nn]], [[concepts/physics-informed-neural-networks]] | Use when query is about training signal, not hardware or architecture. |
+| Neural surrogate / surrogate model | surrogate; neural surrogate; material surrogate; NN surrogate; data-driven surrogate | [[concepts/neural-network-enhanced-fem]] | General umbrella term for any NN replacing a FEM subroutine. |
+| Constitutive law / integration | constitutive law; constitutive model; constitutive integration; material law; material model | [[concepts/viscoplasticity-modelling]], [[concepts/nn-generation-replacement-levels]] | Gauss-point-level routing; distinguishes from element-level stiffness replacement. |
+| Transfer learning | fine-tuning; pre-trained; frozen layers; domain adaptation; weight transfer | [[concepts/transfer-learning]] | Contrasted with MAML in FEM context and with self-learning in deployment context. |
+| Bounded softplus | bounded activation; softplus clipping; bounded output; admissible range activation | [[concepts/bounded-softplus-activation]], [[concepts/solver-strategies-at-gaussian-points]] | HSN output layer ensuring Δεₚ ∈ [a,b]; links to solver convergence guarantee. |
+
+---
+
 ## Keyword → page index
+
+Broad topic routing after term normalisation. Exact aliases and spelling variants belong in `## Alias / synonym index`, not here.
 
 | Keyword(s) | Go to |
 |-----------|-------|
@@ -200,13 +282,13 @@ _Entity pages exist for: [[Saurabh Balkrishna Tandale]], [[Marcus Stoffel]], [[B
 | implicit integration, return-mapping, REIIS | [[concepts/physics-informed-neural-networks]], [[sources/physics-based-rnn-viscoplastic-cmame-2022]] |
 | self-learning, online update, no labels | [[concepts/self-learning-nn]] |
 | LSTM, GRU, TCN, RNN | [[concepts/recurrent-neural-networks-in-mechanics]] |
-| spike, spiking, LMU, LIF, RLIF, SNN | [[concepts/spiking-neural-networks]] |
-| Loihi, Xylo, neuromorphic, brain-inspired | [[concepts/neuromorphic-computing]] |
+| spiking regression, event-driven mechanics, sparse neural dynamics | [[concepts/spiking-neural-networks]] |
+| hardware paradigm, chip deployment, energy-efficient inference | [[concepts/neuromorphic-computing]] |
 | energy, sustainable, 1/1000 | [[concepts/sustainable-ai]], [[sources/snn-engineering-mechanics-ewco-2024]] |
 | viscoplastic, Lemaitre, Chaboche, plasticity | [[concepts/viscoplasticity-modelling]], [[concepts/lemaitre-chaboche-parameters]] |
 | attention, encoder-decoder, shock wave | [[concepts/attention-mechanism]], [[sources/rnn-cnn-shock-wave-plates-cm-2023]] |
-| MAML, meta-learning, HSN, hybrid spiking | [[concepts/meta-learning-maml]], [[sources/meta-learning-hybrid-spiking-npj-2026]] |
-| BNN, binary, FPGA, XNOR, PYNQ | [[concepts/binary-neural-networks]], [[concepts/fpga-acceleration-nn]], [[sources/fpga-bnn-viscoplastic-mrc-2025]] |
+| fast adaptation, task generalisation, meta-pretraining in FEM | [[concepts/meta-learning-maml]], [[sources/meta-learning-hybrid-spiking-npj-2026]] |
+| reconfigurable acceleration, binary inference, low-latency board deployment | [[concepts/binary-neural-networks]], [[concepts/fpga-acceleration-nn]], [[sources/fpga-bnn-viscoplastic-mrc-2025]] |
 | CNN, stem cell, BMSC, tenocyte, Android | [[concepts/cnn-cell-imaging]], [[sources/cnn-tenogenic-differentiation-cmpb-2021]] |
 | chondrocyte, YoloV8, bioreactor, dedifferentiation | [[concepts/cnn-cell-imaging]], [[sources/cell-preserving-chondrocyte-pamm-2024]] |
 | lumbar spine, biomechanics, cyclic loading | [[sources/lumbar-spine-biomechanics-rnn-abme-2023]] |
@@ -214,6 +296,10 @@ _Entity pages exist for: [[Saurabh Balkrishna Tandale]], [[Marcus Stoffel]], [[B
 | Tandale, Stoffel, RWTH, IAM, PostDoc | [[Saurabh Balkrishna Tandale]] |
 | phase 1, early work, 2021–2022 | overview Phase 1; smart-stiffness-1d, intelligent-stiffness, lstm-stiffness |
 | phase 3, neuromorphic, 2023–2026 | overview Phase 3; spiking-rnn, spiking-nn-viscoplastic, snn-engineering-mechanics |
+| solver strategies, Gaussian point solver, Newton-Raphson vs MAML, iteration reduction, root-finding | [[concepts/solver-strategies-at-gaussian-points]], [[concepts/meta-learning-maml]] |
+| transfer learning, fine-tuning, frozen layers, domain adaptation, pre-trained weights | [[concepts/transfer-learning]], [[concepts/meta-learning-maml]] |
+| bounded softplus, admissible interval, output clipping, convergence guarantee, activation bounds | [[concepts/bounded-softplus-activation]], [[concepts/solver-strategies-at-gaussian-points]] |
+| phase 4, meta-learning, MAML, HSN, Loihi 2, 2026 | overview Phase 4; meta-learning-hybrid-spiking-npj-2026, [[concepts/meta-learning-maml]], [[concepts/bounded-softplus-activation]] |
 
 ---
 

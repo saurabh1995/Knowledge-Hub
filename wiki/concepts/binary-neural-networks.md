@@ -3,7 +3,7 @@ title: "Binary Neural Networks"
 type: concept
 tags: [BNN, quantization, hardware-acceleration, FPGA, energy-efficiency, surrogate-model]
 created: 2026-04-07
-updated: 2026-04-07
+updated: 2026-04-15
 ---
 **Neural networks where weights and activations are constrained to 1-bit values (−1 or +1), replacing floating-point multiply-accumulate operations with hardware-efficient XNOR-popcount operations, enabling deployment on FPGAs and low-power devices.**
 
@@ -48,6 +48,34 @@ BNNs are uniquely suited to FPGAs because binary operations map directly to LUT 
 - Accuracy loss vs. full-precision networks, especially for complex nonlinear regression
 - FPGA toolchain (FINN, Vitis HLS, Vivado) is Xilinx-specific; portability requires rework
 - Energy measurement not yet possible on PYNQ Z2 (no on-chip power monitoring)
+
+## Mathematical formulation
+
+### Binarization (MRC 2025)
+
+Weights and activations are constrained to $\{-1, +1\}$:
+
+$$b_w = \text{sign}(w), \qquad b_x = \text{sign}(x)$$
+
+### XNOR-popcount dot product
+
+Standard multiply-accumulate (MAC):
+
+$$y = \sum_{i=1}^{n} w_i x_i \quad (\text{32-bit floating point})$$
+
+Binary equivalent via XNOR-popcount:
+
+$$y = 2\,\text{popcount}(\text{XNOR}(b_w, b_x)) - n$$
+
+where $\text{XNOR}(b_w, b_x)$ is a bitwise operation and $\text{popcount}$ counts the set bits. This replaces floating-point multiplications with 1-cycle bitwise hardware ops — exploiting FPGA LUT+FF resources at ~½ the cost of a MAC.
+
+### Batch normalisation → threshold collapse (FINN streamlining)
+
+In FINN deployment, the learned batch norm parameters $(γ, β)$ and the sign activation are collapsed into a single fixed threshold $τ$:
+
+$$\text{sign}\!\left(\gamma \frac{z - \mu}{\sigma} + \beta\right) = \text{sign}(z - \tau), \qquad \tau = \mu - \frac{\beta\sigma}{\gamma}$$
+
+This eliminates 2 DSPs + 55 FFs + 40 LUTs per binary layer, replacing them with 6 LUTs (CMAME 2025, FINN streamlining step).
 
 ## See also
 [[concepts/fpga-acceleration-nn]], [[concepts/neuromorphic-computing]], [[concepts/neural-network-enhanced-fem]], [[concepts/viscoplasticity-modelling]], [[sources/fpga-bnn-viscoplastic-mrc-2025]]

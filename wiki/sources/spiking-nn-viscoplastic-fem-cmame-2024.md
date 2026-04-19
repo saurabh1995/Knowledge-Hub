@@ -3,7 +3,7 @@ title: "Source: Physics-Based Self-Learning Spiking Neural Network enhanced time
 type: source
 tags: [SNN, LIF, RLIF, self-learning, viscoplasticity, FEM, implicit-integration, Xylo, neuromorphic, CMAME]
 created: 2026-04-06
-updated: 2026-04-07
+updated: 2026-04-15
 sources: 1
 ---
 **Embeds a physics-based self-learning Spiking Neural Network (LIF + RLIF neurons) into the plastic corrector step of FEM implicit integration for viscoplastic plates, achieving >30% speedup and deploying on Xylo-Av2 neuromorphic chip.**
@@ -22,11 +22,55 @@ sources: 1
 3. **Self-learning loop**: physics loss drives weight updates without new labelled data.
 4. **Neuromorphic evaluation**: spiking layers deployed on Xylo-Av2; energy compared with second-generation RNN.
 
+## Material parameters (Table 1) — source: Stoffel (2005) *Mech. Mater.* 37(12)
+
+| Parameter | Aluminum | Copper |
+|-----------|---------|--------|
+| E (MPa) | 67 400 | 113 066 |
+| ν | 0.32 | 0.32 |
+| n | 2.79 | 8.15 |
+| a (MPa) | 3 100 | 98 939.30 |
+| s | 110 | 1 533.41 |
+| K (MPa·s^(1/n)) | 3.42 | 11.45 |
+| k (MPa) | 110 | 180.0 |
+
+Note: Aluminum pretrained; Copper for adaptive online learning demonstration (same parameters as CMAME 2022).
+
+## NN architecture (Table 2 — tuned hyperparameters)
+
+| Component | Tuned value | Search range |
+|-----------|------------|-------------|
+| Encoding LIF layers | 1 | [1–6] |
+| Hidden RLIF layers | 2 | [1–6] |
+| Units per RLIF layer | 30 | [2, 4, 6, …, 32] |
+| Decoding dense layers | 1 | [1–6] |
+| Hidden dense layers | 2 | [1–6] |
+| Units per dense layer | 128 | [8, 16, 32, …, 256] |
+
+Pretraining stops at physics loss $< 5 \times 10^{-6}$. Online trigger: $\mathcal{L}_{\text{physics}} > 10^{-6}$.
+
+## Speedup results
+
+| BVP | Speedup vs classical FEM |
+|-----|--------------------------|
+| Plate BVP 1 (Fig. 9) | 24.02% |
+| Plate BVP 2 (Fig. 10) | 30.98% |
+| Combined geometric + physical nonlinearity (Fig. 13) | 17.54% |
+
+## Accuracy (Table 3 — RMSE, MPa for stress, mm for displacement)
+
+| BVP | Element | σ₁₁ | σ₂₂ | σ₂₃ | σ₁₃ | σ₁₂ | u_global |
+|-----|---------|-----|-----|-----|-----|-----|---------|
+| Fig. 9 | 2 | 0.001487 | 0.00961 | 0.00281 | 0.00136 | 0.001736 | 0.00658 |
+| Fig. 9 | 49 | 0.069 | 0.00658 | 0.1597 | 0.0054 | 0.02004 | — |
+| Fig. 10 | 37 | 0.0253 | 0.007 | 0.0633 | 0.0564 | 0.00445 | 0.01698 |
+| Fig. 13 | 81 | 0.00084 | 0.002 | 8.44×10⁻⁵ | 1.14×10⁻⁵ | 1.1×10⁻³ | 1.32×10⁻⁴ |
+
 ## Key claims & evidence
-- **>30% overall computational gain** vs. classical FEM.
+- **24–31% computational gain** vs. classical FEM (17.5% for combined nonlinearity case).
 - Self-learning ability bolsters convergence — the model adapts to the specific loading path being solved.
-- LIF/RLIF neurons deployed on Xylo-Av2 demonstrate substantially lower energy consumption.
-- Two major advantages: (1) computational speed, (2) online adaptability.
+- LIF/RLIF neurons on Xylo-Av2: **111× energy reduction vs GPU**, **3 161× vs CPU** for spiking layers.
+- Max online self-learning steps to convergence: 60 (cyclical learning rate used).
 
 ## Xylo-Av2 deployment details
 - **Toolchain**: Rockpool (network initialisation) → Samna (chip flash/deploy). KerasSpiking v0.3.1 used for energy profiling.

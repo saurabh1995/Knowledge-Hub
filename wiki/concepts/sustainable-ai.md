@@ -38,4 +38,4 @@ The body of work from CMAME 2023 onward explicitly frames SNN-based FEM as a con
 | NPJ 2024 | General SNN regression framework on neuromorphic processors |
 
 ## See also
-[[concepts/spiking-neural-networks]], [[concepts/neuromorphic-computing]], [[sources/spiking-rnn-neuromorphic-cmame-2023]], [[sources/snn-engineering-mechanics-ewco-2024]], [[sources/snn-nonlinear-regression-neuromorphic-npj]]
+[[concepts/spiking-neural-networks]], [[concepts/neuromorphic-computing]], [[concepts/fpga-acceleration-nn]], [[concepts/binary-neural-networks]], [[sources/spiking-rnn-neuromorphic-cmame-2023]], [[sources/snn-engineering-mechanics-ewco-2024]], [[sources/snn-nonlinear-regression-neuromorphic-npj]]

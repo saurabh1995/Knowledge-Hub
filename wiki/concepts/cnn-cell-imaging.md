@@ -56,4 +56,4 @@ CNNs can classify cells by their **morphology** alone, visible in phase-contrast
 This application domain (cell imaging, regenerative medicine) is distinct from the FEM-focused core of the wiki. The CNN methods used here are second-generation image-classification/detection networks — complementary to but not overlapping with the RNN/SNN FEM surrogate models. The common thread is the use of deep learning to replace expensive, manual, or cell-destructive biological procedures.
 
 ## See also
-[[Saurabh Balkrishna Tandale]], [[sources/cnn-tenogenic-differentiation-cmpb-2021]], [[sources/cell-preserving-chondrocyte-pamm-2024]], [[concepts/neural-network-enhanced-fem]]
+[[Saurabh Balkrishna Tandale]], [[sources/cnn-tenogenic-recognition-cdbme-2020]], [[sources/cnn-tenogenic-differentiation-cmpb-2021]], [[sources/cell-preserving-chondrocyte-pamm-2024]], [[concepts/neural-network-enhanced-fem]]

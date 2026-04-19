@@ -3,22 +3,24 @@ title: "Source: Prediction of Temperature and Loading History Dependent Lumbar S
 type: source
 tags: [biomechanics, spine, LSTM, RNN, cyclic-loading, viscoelasticity, L4L5, ABME]
 created: 2026-04-06
-updated: 2026-04-06
+updated: 2026-04-19
 sources: 1
 ---
 **Trains an LSTM RNN to predict changing moment–range-of-motion curves of L4L5 spinal segments under extended cyclic loading, incorporating testing time and temperature as inputs; R² = 0.988.**
 
 ## Key points
 - Application of RNNs to **experimental biomechanics** — departure from the FEM-centric papers.
-- Co-first authors: **Nadja Blomeyer** and Saurabh Balkrishna Tandale.
+- Co-first authors: **Nadja Blomeyer** and Saurabh Balkrishna Tandale. Additional co-authors: Luis Fernando Nicolini, Philipp Kobbe, Thomas Pufe, Marcus Stoffel.
 - 6 human lumbar spinal segments (L4L5) tested in vitro.
 - Loading protocol: cyclic pure moments (±7.5 Nm) for 18 hours total per specimen, across three directions: flexion-extension (FE), axial rotation (AR), lateral bending (LB).
 - LSTM RNN trained to predict moment–Range of Motion (RoM) curves including creep and viscoelastic effects.
 - Inputs to RNN: total testing time + testing temperature.
+- **Architecture (Table 2)**: 6 hidden recurrent (LSTM) layers with [64, 64, 128, 128, 256, 256] units + 1 dense layer. Trained for **44,753 epochs** (batch=324, lr=0.001, dropout=0.15).
 
 ## Methodology / approach
 - Experimental: six specimens loaded cyclically for up to 18 h, unloaded for recovery periods.
-- Data preprocessing: curves parameterised; symmetry of AR and LB exploited to expand dataset (179 training sequences from 6 specimens).
+- Data preprocessing: curves parameterised; symmetry of AR and LB exploited to expand dataset (179 total sequences from 6 specimens).
+- **Data split**: 116 training / 64 validation / 9 test sequences.
 - LSTM trained via backpropagation; internal hidden state implicitly captures path-dependent viscoelastic behaviour.
 - Validated on unseen loading sequences.
 
@@ -39,4 +41,4 @@ sources: 1
 > "Neither time- and cost-expensive in vitro tests nor complex and computationally expensive in silico studies have to be performed [once the RNN is trained]."
 
 ## See also
-[[concepts/recurrent-neural-networks-in-mechanics]], [[concepts/viscoplasticity-modelling]], [[Saurabh Balkrishna Tandale]]
+[[concepts/recurrent-neural-networks-in-mechanics]], [[concepts/viscoplasticity-modelling]], [[Saurabh Balkrishna Tandale]], [[Nadja Blomeyer]]
