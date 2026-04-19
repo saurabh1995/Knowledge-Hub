@@ -203,3 +203,21 @@ _Grep tip: `grep "^## \[" wiki/log.md | tail -10`_
   - [[concepts/meta-learning-maml]]: updated application section and QAT subsection with empirical performance data and mechanism explanation
   - [[wiki/quick-ref.md]]: added QAT training overhead metric (+67% epochs)
 - Answer filed as new wiki page: no (integrated into existing source + concept pages)
+
+## [2026-04-18] query | Quantization effect in MAML-based training
+
+- Query: "find if you find information about how quantization has affected the training in MAML-based training strategy"
+- Sources consulted: [[sources/meta-learning-hybrid-spiking-npj-2026]], [[concepts/meta-learning-maml]]
+- Key findings:
+  - QAT is applied during meta-training for Loihi 2 deployment and uses simulated quantization in the forward pass with STE in backprop
+  - Quantization increases training from 60 epochs to 100 epochs for HSN + MAML, a ~67% overhead, and raises test loss
+  - The wiki attributes the degradation to second-order MAML gradients amplifying bias from both quantization STE and spiking surrogate gradients
+  - The tradeoff is accepted because QAT preserves deployability on Loihi 2, where only the final dense layer still needs CPU/GPU adaptation
+- Answer filed as new wiki page: no (covered by existing source and concept pages)
+
+## [2026-04-19] manual | Retrieval hardening without Graphify
+
+- Hardened `CLAUDE.md` query workflow: alias-first quick-ref lookup, raw-PDF backfill rule, retrieval-gap patching, and `Backfilled to quick-ref` logging convention for deep-read queries
+- Expanded [[Quick Reference]] with evidence locators for numeric claims, a strict alias/synonym index, `Common comparisons`, and `Query-derived facts`
+- Added ingest/lint maintenance rules so alias drift, thin quick-ref entries, and repeated query misses are surfaced and fixed earlier
+- Pages updated: [[Quick Reference]]
