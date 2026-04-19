@@ -50,4 +50,4 @@ $$\mathbf{s}_t = f\!\left(\mathbf{s}_{t-1},\,\mathbf{y}_{t-1},\,\mathbf{c}_t\rig
 $\mathbf{W}_h$, $\mathbf{W}_s$, $\mathbf{v}$ are learned parameters; $\mathbf{y}_{t-1}$ is the previous decoder output. In the CM 2023 structural dynamics application, $\alpha_{ti}$ peaks when $t = i$, reflecting that displacement at each step is primarily driven by the instantaneous pressure load.
 
 ## See also
-[[concepts/recurrent-neural-networks-in-mechanics]], [[sources/rnn-cnn-shock-wave-plates-cm-2023]]
+[[concepts/recurrent-neural-networks-in-mechanics]], [[concepts/neural-network-enhanced-fem]], [[sources/rnn-cnn-shock-wave-plates-cm-2023]]

@@ -85,6 +85,53 @@ Transfer learning (self-learning without MAML) vs. MAML-based meta-learning:
 
 ([[sources/meta-learning-hybrid-spiking-npj-2026]], page 5)
 
+## Mathematical formulation
+
+### Local residual system at a Gauss point
+
+At each Gauss point during implicit FEM integration, the constitutive update solves for the equivalent viscoplastic strain increment $\Delta\varepsilon_p$ satisfying:
+
+$$r(\Delta\varepsilon_p) = \Delta\varepsilon_p - \Delta t \, \dot{\varepsilon}_p(\boldsymbol{\sigma}(\Delta\varepsilon_p)) = 0$$
+
+where $\dot{\varepsilon}_p$ is the viscoplastic strain rate from the Lemaitre–Chaboche flow rule and $\boldsymbol{\sigma}$ is the updated stress tensor (function of $\Delta\varepsilon_p$ via Backward Euler). All classical solvers below operate on this scalar residual equation.
+
+### Newton-Raphson (local form)
+
+$$\Delta\varepsilon_p^{(k+1)} = \Delta\varepsilon_p^{(k)} - \frac{r\!\left(\Delta\varepsilon_p^{(k)}\right)}{\partial r / \partial \Delta\varepsilon_p \big|^{(k)}}$$
+
+Requires the tangent $\partial r / \partial \Delta\varepsilon_p$ at each iteration. Fast quadratic convergence near the root, but can diverge outside the basin of attraction. ([[sources/meta-learning-hybrid-spiking-npj-2026]])
+
+### Backward Euler integration
+
+The stress update (return-mapping) uses the Backward Euler scheme:
+
+$$\boldsymbol{\sigma}^{n+1} = \boldsymbol{\sigma}^{n} + \mathbf{C} : \left(\Delta\boldsymbol{\varepsilon} - \Delta\varepsilon_p \, \mathbf{N}^{n+1}\right)$$
+
+where $\mathbf{C}$ is the elastic stiffness tensor and $\mathbf{N}^{n+1}$ is the flow direction at the updated stress state. This generates the nonlinear system $r(\Delta\varepsilon_p) = 0$ solved by the methods above. ([[sources/physics-based-rnn-viscoplastic-cmame-2022]] — Section 2)
+
+### Pegasus method (bracketing update rule)
+
+Given two initial guesses $a_0, b_0$ bracketing the root ($r(a_0) \cdot r(b_0) < 0$), the Pegasus update at step $k$:
+
+$$c_k = b_k - r(b_k) \cdot \frac{b_k - a_k}{r(b_k) - r(a_k)}$$
+
+If $r(c_k) \cdot r(b_k) < 0$: set $a_{k+1} = b_k$, $b_{k+1} = c_k$  
+If $r(c_k) \cdot r(a_k) < 0$: set $a_{k+1} = c_k$, $b_{k+1} = b_k$, and **rescale** $r(a_{k+1}) \leftarrow r(a_{k+1}) / 2$ (the Pegasus correction that prevents slow convergence).
+
+The rescaling step distinguishes Pegasus from plain false position and gives superlinear convergence. ([[sources/meta-learning-hybrid-spiking-npj-2026]])
+
+### NN-based solver (MAML inner loop)
+
+The MAML-pretrained HSNN replaces one or more Pegasus iterations by predicting $\Delta\varepsilon_p$ directly:
+
+$$\Delta\hat{\varepsilon}_p = f_{\theta}\!\left(\boldsymbol{\sigma}^{\text{trial}}, \varepsilon_p^n, T, \Delta t\right)$$
+
+Output bounded via [[concepts/bounded-softplus-activation]] to interval $[a, b]$, ensuring $r(a) \cdot r(b) < 0$ remains valid. Inner-loop adaptation:
+
+$$\theta' = \theta - \alpha \nabla_{\theta} \mathcal{L}_p(\theta), \quad \mathcal{L}_p = \|r(\Delta\hat{\varepsilon}_p)\|^2$$
+
+(Eq. 18 in [[sources/meta-learning-hybrid-spiking-npj-2026]])
+
 ## See also
 
-[[concepts/meta-learning-maml]], [[concepts/neural-network-enhanced-fem]], [[concepts/self-learning-nn]], [[concepts/viscoplasticity-modelling]], [[concepts/spiking-neural-networks]], [[sources/meta-learning-hybrid-spiking-npj-2026]]
+[[concepts/meta-learning-maml]], [[concepts/neural-network-enhanced-fem]], [[concepts/self-learning-nn]], [[concepts/viscoplasticity-modelling]], [[concepts/spiking-neural-networks]], [[concepts/physics-informed-neural-networks]], [[concepts/bounded-softplus-activation]], [[sources/meta-learning-hybrid-spiking-npj-2026]]

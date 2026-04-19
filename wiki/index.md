@@ -1,5 +1,5 @@
 # KnowledgeHub Index
-_Last updated: 2026-04-19 — 48 pages total_
+_Last updated: 2026-04-19 — 50 pages total_
 
 ## Overview
 - [[Overview]] — evolving synthesis of all knowledge
@@ -39,7 +39,7 @@ _Last updated: 2026-04-19 — 48 pages total_
 | [[Nadja Blomeyer]] | person | Co-first author on lumbar spine biomechanics RNN paper (ABME 2023) |
 | [[Rutwik Gulakala]] | person | Recurring co-author across FEM, cell imaging, and FPGA papers |
 
-## Concepts (18)
+## Concepts (20)
 | Page | Summary |
 |------|---------|
 | [[concepts/neural-network-enhanced-fem]] | Replacing FEM subroutines (stiffness, material integration) with trained NNs for faster simulations |
@@ -60,3 +60,5 @@ _Last updated: 2026-04-19 — 48 pages total_
 | [[concepts/lemaitre-chaboche-parameters]] | Numerical parameter sets for the Lemaitre–Chaboche model; two distinct steel campaigns + copper; full comparison table |
 | [[concepts/nn-generation-replacement-levels]] | ANN/LSTM replaces K+F directly (element level); brain-inspired SNNs replace constitutive law (Gauss-point level) — two distinct strategies |
 | [[concepts/solver-strategies-at-gaussian-points]] | Evolution from classical iterative solvers (Newton–Raphson, Pegasus) to self-learning and MAML-based NN solvers |
+| [[concepts/transfer-learning]] | Fine-tuning of pre-trained NN for new tasks; contrasted with MAML; requires ~30 sequences vs 5 for MAML in FEM |
+| [[concepts/bounded-softplus-activation]] | Bounded output activation for HSN ensuring Δεₚ stays within bracketing interval; convergence guarantee for Gauss-point solvers |

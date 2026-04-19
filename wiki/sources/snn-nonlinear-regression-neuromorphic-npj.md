@@ -3,7 +3,7 @@ title: "Source: Spiking neural networks for nonlinear regression of complex tran
 type: source
 tags: [SNN, LMU, spiking-LMU, regression, neuromorphic, autoencoding, transient-signals, NPJ, sustainable]
 created: 2026-04-06
-updated: 2026-04-06
+updated: 2026-04-19
 sources: 1
 ---
 **Proposes a general SNN regression framework for complex transient signal processing, with a spiking LMU for path-dependence and an autoencoding interface, validated on experimental wave propagation and inelastic deformation benchmarks on neuromorphic processors.**
@@ -27,6 +27,14 @@ sources: 1
 - General SNN regression framework applicable to a wide range of scientific and technical applications.
 - Spiking LMU handles path-dependencies and signal evolutions effectively in the spiking domain.
 - Framework validated on realistic, experimentally measured benchmarks (not just simulated data).
+- **Energy benchmark (Table 3, Layer 1)**: GPU = 3,434 nJ · CPU = 99,081 nJ · Loihi = **5.4072 nJ** — Loihi is 18,331× more energy-efficient than CPU for this layer.
+- **Total model energy reduction (Table 4)**:
+  - CPU / Loihi = **35,581.4×**
+  - GPU / Loihi = 1,176.33×
+  - Hybrid SLMU + CPU = 1,663.9×
+  - Hybrid SLMU + GPU = 21.28×
+- Hardware used: Intel Loihi (neuromorphic), NVIDIA GTX Titan Black (GPU), Intel Core i7-4960X (CPU).
+- The hybrid SLMU+CPU/GPU figures are for models where spiking layers run on Loihi and dense encoder/decoder layers run on conventional hardware — representative of practical deployment scenarios.
 
 ## Limitations / caveats
 - Uncorrected proof — may have minor changes in published version.

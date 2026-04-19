@@ -11,7 +11,7 @@ updated: 2026-04-19
 
 This wiki documents a coherent 5-year research programme (2021–2026) by [[Saurabh Balkrishna Tandale]] at RWTH Aachen University. The unifying goal: **make nonlinear Finite Element Method (FEM) simulations faster and more energy-efficient by replacing expensive classical subroutines with trained neural networks**.
 
-The programme evolves through three distinct phases:
+The programme evolves through four distinct phases:
 
 ---
 
@@ -42,9 +42,9 @@ Parallel development:
 
 ---
 
-## Phase 3 — Neuromorphic and sustainable AI (2023–2026)
+## Phase 3 — Neuromorphic and sustainable AI (2023–2024)
 
-**Papers:** CMAME 2023, CMAME 2024, EWCO 2024, NPJ 2024, NPJ 2026
+**Papers:** CMAME 2023, CMAME 2024, EWCO 2024, NPJ 2024
 
 The pivot: second-generation networks (LSTM, GRU) are replaced by **[[concepts/spiking-neural-networks]]** (third-generation), which communicate through sparse binary signals and can be deployed on energy-efficient **[[concepts/neuromorphic-computing|neuromorphic chips]]** (Loihi, Xylo-Av2).
 
@@ -52,19 +52,33 @@ Key progression:
 - **CMAME 2023**: first SNN surrogate for solid mechanics BVPs; introduces spiking LMU + autoencoding strategy; deployed on Loihi.
 - **CMAME 2024**: SNN (LIF+RLIF) embedded directly into FEM implicit integration as a self-learning plastic corrector; >30% speedup, deployed on Xylo-Av2.
 - **EWCO 2024**: spike-based LMU + pseudo-explicit integration scheme; >40% speedup; energy reduced to 1/1000 on Xylo-Av2.
-- **NPJ 2024** (Stoffel & Tandale): general SNN regression framework for complex transient signals on neuromorphic processors.
-- **NPJ 2026**: introduces Hybrid Spiking Neurons (HSN) — real-valued spiking — and applies **[[concepts/meta-learning-maml|MAML]]** meta-learning for better pretraining initialisation; deployed on Loihi 2 with QAT.
+- **NPJ 2024** (Stoffel & Tandale): establishes the general SNN regression framework for complex transient signals on neuromorphic processors — the theoretical foundation that Phase 4 builds on.
+
+Phase 3 closes the proof-of-concept for SNN-in-FEM and establishes energy efficiency at Xylo-Av2 scale. The open question it leaves: can the SNN initialisation be made robust enough to generalise rapidly across different BVPs without extensive retraining?
 
 ---
 
-## Phase 4 — FPGA acceleration and cell imaging (2020–2025, parallel threads)
+## Phase 4 — Meta-learning and hardware diversification (2025–2026)
 
-Two parallel research directions expand the scope beyond the FEM-SNN core:
+Phase 4 answers the Phase 3 open question with meta-learning, and simultaneously extends hardware reach via FPGA and applied computer vision.
+
+### 4 (main) — MAML + Hybrid Spiking Neurons
+**Paper:** NPJ 2026 ([[sources/meta-learning-hybrid-spiking-npj-2026]])
+
+The Phase 4 centrepiece: **[[concepts/meta-learning-maml|MAML]]** meta-learning is applied to pre-train a Hybrid Spiking Neuron (HSN) network so that the self-learning inner loop converges on new BVPs with only 5 training sequences (vs. ~30 for transfer learning). HSNs use real-valued spiking — combining ANN expressivity with SNN energy characteristics. Deployed on Intel Loihi 2 with Quantisation-Aware Training (QAT).
+
+Results:
+- 35% fewer Gauss-point iterations vs. Pegasus on BVP1 (7,845 → 5,056 iters)
+- 20% fewer on BVP2 (16,593 → 13,258 iters)
+- 19% wall-clock speedup (BVP1), 7.3% (BVP2)
+- QAT overhead: +67% training epochs (60 → 100); accepted for Loihi 2 hardware deployment
+
+Key concept introduced: **[[concepts/bounded-softplus-activation]]** at the HSN output layer ensures Δεₚ predictions always lie within the bracketing interval, combining NN speed with solver convergence guarantee.
 
 ### 4a — FPGA + Binary Neural Networks
 **Paper:** MRC 2025 ([[sources/fpga-bnn-viscoplastic-mrc-2025]])
 
-A third hardware pathway is introduced: [[concepts/binary-neural-networks]] (BNNs) deployed on FPGA (PYNQ Z2, Xilinx). BNNs replace floating-point multiplications with 1-bit XNOR-popcount operations, which map efficiently to FPGA logic resources. The BNN replaces the Lemaitre–Chaboche viscoplastic law at Gauss points with a hybrid encoder (real) → binary core → decoder (real) architecture.
+A third hardware pathway alongside neuromorphic chips: [[concepts/binary-neural-networks]] (BNNs) deployed on FPGA (PYNQ Z2, Xilinx). BNNs replace floating-point multiplications with 1-bit XNOR-popcount operations. The BNN replaces the Lemaitre–Chaboche viscoplastic law at Gauss points with a hybrid encoder (real) → binary core → decoder (real) architecture.
 
 Result: FPGA BNN forward pass is 60% faster than Intel i7 CPU and 26% faster than NVIDIA RTX 4090 GPU. Energy comparison deferred (PYNQ Z2 lacks on-chip power measurement).
 

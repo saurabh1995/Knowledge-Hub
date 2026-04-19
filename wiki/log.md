@@ -250,3 +250,35 @@ _Grep tip: `grep "^## \[" wiki/log.md | tail -10`_
   3. **attention-mechanism.md math added**: `## Mathematical formulation` section added with full additive attention equations (alignment score, softmax weights, context vector, GRU decoder update); sourced to CM 2023 Section 3.2; updated date to 2026-04-19
   4. **overview.md updated**: added [[concepts/lemaitre-chaboche-parameters]], [[concepts/nn-generation-replacement-levels]], [[concepts/solver-strategies-at-gaussian-points]] to Key conceptual threads table; updated "Open questions" date and frontmatter `updated` to 2026-04-19
 - Pages updated: [[Overview]], [[concepts/sobolev-training]], [[concepts/attention-mechanism]]
+
+---
+
+## [2026-04-19] manual | Pre-merge enrichment: new concepts, math formulations, cross-links, entity stubs, overview restructure
+
+- Full gap audit run before merging codex-improv → main (3 parallel Explore agents)
+- PDF enrichment deferred: poppler-utils not installed; marked as Task #1 for future session
+- Pages created: [[concepts/transfer-learning]], [[concepts/bounded-softplus-activation]]
+- Pages updated: [[concepts/solver-strategies-at-gaussian-points]] (added full ## Mathematical formulation: local residual system, Newton-Raphson local form, Backward Euler integration, Pegasus bracketing update rule, MAML inner-loop NN solver)
+- Cross-links fixed: [[concepts/sustainable-ai]] (added fpga-acceleration-nn, binary-neural-networks); [[concepts/cnn-cell-imaging]] (added cnn-tenogenic-recognition-cdbme-2020); [[concepts/solver-strategies-at-gaussian-points]] (added physics-informed-neural-networks, bounded-softplus-activation); [[concepts/attention-mechanism]] (added neural-network-enhanced-fem); [[sources/lumbar-spine-biomechanics-rnn-abme-2023]] (added Nadja Blomeyer); [[Rutwik Gulakala]] (added Bernd Markert)
+- Entity stubs enriched: [[Nadja Blomeyer]] (added experimental biomechanics context, co-authorship structure, IAM/RWTH affiliation note); [[Rutwik Gulakala]] (added cross-thread profile, IAM affiliation note, gap-year observation)
+- Overview restructured (Option B): programme now documented as 4 phases; Phase 3 ends at EWCO 2024 + NPJ 2024 (neuromorphic/SNN); Phase 4 is MAML/HSN/Loihi 2 (main) + FPGA 4a + cell imaging 4b; bounded-softplus-activation introduced in Phase 4 description
+- quick-ref.md updated: phases table updated; 2 new concept definition rows; 2 new alias rows; 2 new concept→source mapping rows; 4 new keyword→page index rows
+- index.md updated: 50 pages total (was 48); 20 concepts (was 18); 2 new concept rows added
+- Outstanding: Task #1 (PDF re-reads for 5 source pages) blocked on poppler-utils install (`winget install poppler`)
+- Backfilled to quick-ref: yes
+
+---
+
+## [2026-04-19] manual | PDF re-reads: quantitative enrichment of 5 thin source pages
+
+- Poppler installed (winget install oschwartz10612.Poppler v25.07.0-0); pdftotext used via Bash with explicit PATH
+- All 5 priority PDFs read and quantitative data extracted; source pages enriched:
+  1. [[sources/rnn-plane-stress-damage-mrc-2024]] — added 12%/14% computational gain (Sec 5.2, Fig. 4); RMSE σ₁₁=1.3×10⁻³ MPa (Table 2); architecture: 3 LMU + 2 dense layers, dropout 20%, lr=1×10⁻⁴, cyclical LR for self-learning; Copper material parameter added
+  2. [[sources/snn-nonlinear-regression-neuromorphic-npj]] — added full energy benchmark: Loihi Layer 1=5.4072 nJ vs CPU=99,081 nJ (Table 3); total CPU/Loihi=35,581.4× (Table 4); GPU/Loihi=1,176.33×; hybrid SLMU+CPU=1,663.9×; hardware: Loihi + GTX Titan Black + i7-4960X
+  3. [[sources/lumbar-spine-biomechanics-rnn-abme-2023]] — added LSTM architecture: 6 layers [64,64,128,128,256,256] + 1 dense (Table 2); training: 44,753 epochs, batch=324, lr=0.001, dropout=0.15; data split: 116/64/9 sequences; additional co-authors: Nicolini, Kobbe, Pufe
+  4. [[sources/rnn-cnn-shock-wave-plates-cm-2023]] — added model parameter counts from Table 3: attention enc-dec=231,810 (winner), GRU=274,273, TCN=232,961, LSTM=309,281; RMSE Fig. 14: attention enc-dec=0.03553 (~17× better than LSTM=0.60136); loss function: MSE
+  5. [[sources/intelligent-stiffness-plate-beam-ijnme-2022]] — added per-element-type speedups: truss 35.11% (Table 5), beam 41.14% (Table 7), plate 64.57%; two-level strategy documented (FFNN for 1D, LSTM for 2D); 6 academic quasistatic BVPs
+- quick-ref.md updated: 16 new numeric claim rows added covering all 5 papers
+- Pages updated: [[sources/rnn-plane-stress-damage-mrc-2024]], [[sources/snn-nonlinear-regression-neuromorphic-npj]], [[sources/lumbar-spine-biomechanics-rnn-abme-2023]], [[sources/rnn-cnn-shock-wave-plates-cm-2023]], [[sources/intelligent-stiffness-plate-beam-ijnme-2022]], [[Quick Reference]]
+- Backfilled to quick-ref: yes
+- Task #1 complete — all 7 pre-merge enrichment tasks now done
