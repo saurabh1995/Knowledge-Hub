@@ -76,7 +76,7 @@ Total hybrid model (spiking on Xylo + dense on GPU): **1,440 nJ** vs 2,325 nJ (G
 
 | Approach | Energy saving | CO₂ saving |
 |---------|--------------|------------|
-| GNN surrogate (non-spiking) vs FEM CPU | >99% | ~5 kg vs ~5.29 kWh |
+| GNN surrogate (non-spiking) vs FEM CPU | >99% (1.25 J vs 5.29 kWh) | ~2 kg CO₂ saved |
 | Hybrid SLSTM+dense elements | 303.4 kWh → 4 kWh | 115 kg → 4 kg |
 | SNN at Gaussian points (Loihi) | 14.3 nJ vs 435,488 nJ/inference | 5.1 kg saved in crash sim |
 | SNN Gauss + SpMV on FPGA | 92% total | — |

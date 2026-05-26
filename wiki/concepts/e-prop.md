@@ -77,13 +77,7 @@ E-prop has been demonstrated on neuromorphic hardware (SpiNNaker 2) in the neuro
 
 ## Mathematical formulation
 
-See equations above (all from [[sources/biologically-plausible-rsnn-cmame-2026]], Sec 2.3, Eqs. 14–31):
-
-Full BPTT gradient (reference):
-$$\frac{dE}{dW_{ji}} = \sum_{t'} \frac{dE}{d\mathbf{h}^{t'}_j} \cdot \frac{\partial \mathbf{h}^{t'}_j}{\partial W_{ji}}$$
-
-E-prop approximation (Eq. 22):
-$$\frac{dE}{dW_{ji}} = \sum_t \frac{\partial E}{\partial z^t_j} \cdot \left[\frac{dz^t_j}{dW_{ji}}\right]_{\text{local}}$$
+Canonical equations from [[sources/biologically-plausible-rsnn-cmame-2026]], Sec 2.3, Eqs. 14–31. Full derivations are in the body sections above.
 
 Variable definitions:
 - $E$: loss (MSE); $W_{ji}$: synaptic weight from pre-neuron $i$ to post-neuron $j$

@@ -26,12 +26,11 @@ Four overlapping research threads:
 - **Bernd Markert** — co-author on earlier papers (2021–2023)
 - **Franz Bamer** — co-author on CMAME 2022
 - **Nadja Blomeyer** — co-first author on ABME 2023 (biomechanics)
-- **Rutwik Gulakala** — recurring co-author across FEM, cell imaging, and FPGA papers
+- **Rutwik Gulakala** — recurring co-author across FEM, cell imaging, FPGA, and GNN papers; co-author npj AI 2026 (GNN crash surrogate)
 - **Gözde Dursun** — lead author on CNN cell-imaging papers (2020–2021)
 - **Vasileios Polydoras** — lead author on FPGA BNN paper (2025); co-author npj AI 2026
 - **Hyun Lee** — lead author on chondrocyte dedifferentiation paper (2024)
 - **Vaishnav Bhaskaran** — first author on CMAME 2026 (ALIF + e-prop)
-- **Rutwik Gulakala** — co-author npj AI 2026 (GNN crash surrogate)
 - **Agnes Korcsak-Gorzo**, **Abigail Morrison**, **Markus Diesmann** — FZ Jülich neuroscience collaborators (CMAME 2026)
 
 ## Publication list (in wiki)

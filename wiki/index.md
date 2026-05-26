@@ -31,8 +31,8 @@ _Last updated: 2026-05-26 — 62 pages total_
 ## Entities (13)
 | Page | Type | Summary |
 |------|------|---------|
-| [[Saurabh Balkrishna Tandale]] | person | PostDoc at RWTH Aachen; NN-enhanced FEM, SNN, neuromorphic computing; 17 publications in wiki |
-| [[Marcus Stoffel]] | person | Principal supervisor / PI; co-author all 17 papers; source of Lemaitre–Chaboche parameter sets |
+| [[Saurabh Balkrishna Tandale]] | person | PostDoc at RWTH Aachen; NN-enhanced FEM, SNN, neuromorphic computing; 19 publications in wiki |
+| [[Marcus Stoffel]] | person | Principal supervisor / PI; co-author all 19 papers; source of Lemaitre–Chaboche parameter sets |
 | [[Bernd Markert]] | person | Co-author on Phase 1–2 papers (2021–2023); RWTH Aachen mechanics professor |
 | [[Franz Bamer]] | person | Co-author on CMAME 2022 physics-based RNN paper |
 | [[Vasileios Polydoras]] | person | Lead author on FPGA BNN MRC 2025; responsible for hardware benchmarking |

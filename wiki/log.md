@@ -8,16 +8,6 @@ _Grep tip: `grep "^## \[" wiki/log.md | tail -10`_
 
 - Created directory structure: `raw/`, `raw/assets/`, `wiki/`, `wiki/sources/`, `wiki/entities/`, `wiki/concepts/`
 - Created `CLAUDE.md` schema
-
-## [2026-04-28] query | Speedups from spiking networks as FEM solvers
-
-- Query: speedups obtained in studies with spiking networks as solvers in FEM
-- Found: three major studies in wiki with speedup results
-  - CMAME 2024 (LIF/RLIF self-learning): 24–31% speedup; 111–3,161× energy reduction on Xylo-Av2
-  - EWCO 2024 (spiking LMU pseudo-explicit): >40% speedup; 1/1000 energy on Xylo-Av2
-  - NPJ 2026 (HSN + MAML meta-learning): 19% / 7.3% speedup on Loihi 2
-- Pages read: [[sources/spiking-nn-viscoplastic-fem-cmame-2024]], [[sources/snn-engineering-mechanics-ewco-2024]], [[sources/meta-learning-hybrid-spiking-npj-2026]]
-- Backfilled to quick-ref: no — speedup data already present; synthesis provided to user
 - Created `wiki/index.md` (master catalog)
 - Created `wiki/log.md` (this file)
 - Created `wiki/overview.md` (stub)
@@ -292,6 +282,18 @@ _Grep tip: `grep "^## \[" wiki/log.md | tail -10`_
 - Pages updated: [[sources/rnn-plane-stress-damage-mrc-2024]], [[sources/snn-nonlinear-regression-neuromorphic-npj]], [[sources/lumbar-spine-biomechanics-rnn-abme-2023]], [[sources/rnn-cnn-shock-wave-plates-cm-2023]], [[sources/intelligent-stiffness-plate-beam-ijnme-2022]], [[Quick Reference]]
 - Backfilled to quick-ref: yes
 - Task #1 complete — all 7 pre-merge enrichment tasks now done
+
+---
+
+## [2026-04-28] query | Speedups from spiking networks as FEM solvers
+
+- Query: speedups obtained in studies with spiking networks as solvers in FEM
+- Found: three major studies in wiki with speedup results
+  - CMAME 2024 (LIF/RLIF self-learning): 24–31% speedup; 111–3,161× energy reduction on Xylo-Av2
+  - EWCO 2024 (spiking LMU pseudo-explicit): >40% speedup; 1/1000 energy on Xylo-Av2
+  - NPJ 2026 (HSN + MAML meta-learning): 19% / 7.3% speedup on Loihi 2
+- Pages read: [[sources/spiking-nn-viscoplastic-fem-cmame-2024]], [[sources/snn-engineering-mechanics-ewco-2024]], [[sources/meta-learning-hybrid-spiking-npj-2026]]
+- Backfilled to quick-ref: no — speedup data already present; synthesis provided to user
 
 ---
 
