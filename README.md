@@ -25,6 +25,8 @@ The wiki is a **compiled artifact**, not a retrieval index. Knowledge is integra
 K-hub (YourName)/
 ├── CLAUDE.md               ← Schema + rules (the AI's constitution)
 ├── README.md               ← This file
+├── .agents/
+│   └── skills/             ← Shared Claude Code / Codex skills (khub-ingest, khub-pdf, khub-query)
 ├── raw/                    ← Drop your papers and articles here
 │   ├── assets/             ← Images referenced by sources
 │   └── *.pdf  *.md  *.txt  ← Source documents (never modified by AI)
@@ -80,7 +82,7 @@ Claude Code picks up `CLAUDE.md` and runs the session-start checklist automatica
 
 ### Custom skills (optional)
 
-This vault uses Claude Code skills defined in `.claude/commands/`. If you have custom slash commands (e.g. `/khub-ingest`, `/khub-query`), they will be available automatically. See [Claude Code docs](https://docs.anthropic.com/claude-code) for how to create skills.
+This vault ships with three Claude Code skills in `.agents/skills/`: `khub-ingest`, `khub-pdf`, and `khub-query`. They are available automatically to any collaborator who clones the repo — no local setup needed. See [Claude Code docs](https://docs.anthropic.com/claude-code) for how to create or extend skills.
 
 ### Session flow
 
