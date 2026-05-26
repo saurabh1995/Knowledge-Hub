@@ -282,3 +282,42 @@ _Grep tip: `grep "^## \[" wiki/log.md | tail -10`_
 - Pages updated: [[sources/rnn-plane-stress-damage-mrc-2024]], [[sources/snn-nonlinear-regression-neuromorphic-npj]], [[sources/lumbar-spine-biomechanics-rnn-abme-2023]], [[sources/rnn-cnn-shock-wave-plates-cm-2023]], [[sources/intelligent-stiffness-plate-beam-ijnme-2022]], [[Quick Reference]]
 - Backfilled to quick-ref: yes
 - Task #1 complete — all 7 pre-merge enrichment tasks now done
+
+---
+
+## [2026-04-28] query | Speedups from spiking networks as FEM solvers
+
+- Query: speedups obtained in studies with spiking networks as solvers in FEM
+- Found: three major studies in wiki with speedup results
+  - CMAME 2024 (LIF/RLIF self-learning): 24–31% speedup; 111–3,161× energy reduction on Xylo-Av2
+  - EWCO 2024 (spiking LMU pseudo-explicit): >40% speedup; 1/1000 energy on Xylo-Av2
+  - NPJ 2026 (HSN + MAML meta-learning): 19% / 7.3% speedup on Loihi 2
+- Pages read: [[sources/spiking-nn-viscoplastic-fem-cmame-2024]], [[sources/snn-engineering-mechanics-ewco-2024]], [[sources/meta-learning-hybrid-spiking-npj-2026]]
+- Backfilled to quick-ref: no — speedup data already present; synthesis provided to user
+
+---
+
+## [2026-05-26] ingest | Bhaskaran et al. 2026 (CMAME) + Stoffel et al. 2026 (npj AI) — batch ingest
+
+- Ingested 2 new papers from `raw/Papers/Bhaskaran_et_al_2026.pdf` and `raw/Papers/Stoffel_et_al_2026.pdf`
+- Pages created:
+  - [[sources/biologically-plausible-rsnn-cmame-2026]] — ALIF RSNN, e-prop learning, hybrid e-prop/BPTT, rheological analogy with LIF; MSE benchmarks vs BPTT and non-spiking
+  - [[sources/sustainable-neuromorphic-fem-npjai-2026]] — three-tier sustainable FEM (DI-GNS GNN, SNN Gauss points, FPGA BNN); CO₂ quantification for crash simulation
+  - [[concepts/e-prop]] — full formulation with eligibility traces, ALIF eligibility vector, multi-layer extension, trade-off vs BPTT
+  - [[Vaishnav Bhaskaran]] — entity stub (lead author CMAME 2026)
+  - [[Markus Diesmann]] — entity stub (FZ Jülich, neuroscience co-author)
+  - [[Agnes Korcsak-Gorzo]] — entity stub (FZ Jülich)
+  - [[Abigail Morrison]] — entity stub (FZ Jülich)
+- Pages updated:
+  - [[concepts/spiking-neural-networks]] — added ALIF model, learning rules table, e-prop entry, updated hardware table
+  - [[concepts/neuromorphic-computing]] — added CO₂ framing table, DI-GNS section, Speck chip, npj AI 2026 cross-links
+  - [[concepts/neural-network-enhanced-fem]] — added complete BVP GNN surrogate tier (DI-GNS)
+  - [[Saurabh Balkrishna Tandale]] — added 2 papers; updated collaborators
+  - [[Marcus Stoffel]] — updated to 19 papers; noted npj AI 2026 lead authorship
+  - [[Vasileios Polydoras]] — added both 2026 papers
+  - [[Rutwik Gulakala]] — added npj AI 2026
+  - [[Overview]] — added Phase 4c (CMAME 2026) and Phase 4d (npj AI 2026) sub-sections
+  - [[index]] — added 2 sources, 4 entity pages, 1 concept page; updated total to 62 pages
+  - [[Quick Reference]] — 17 new numeric claims; 2 paper rows; aliases for e-prop, ALIF, DI-GNS, SLMU, CO₂/sustainability
+- Wikilinks validated: all 24 links in new pages resolve to index.md entries ✓
+- Backfilled to quick-ref: yes

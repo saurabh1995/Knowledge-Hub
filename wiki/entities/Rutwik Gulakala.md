@@ -3,7 +3,7 @@ title: "Rutwik Gulakala"
 type: entity
 tags: [person, co-author, FEM, cell-imaging, FPGA, BNN, RWTH-Aachen]
 created: 2026-04-19
-updated: 2026-04-19
+updated: 2026-05-26
 ---
 **Versatile co-author at RWTH Aachen appearing across the cell imaging, FEM mechanics, and FPGA acceleration threads — one of the few collaborators who spans multiple research directions in this wiki.**
 
@@ -11,6 +11,7 @@ updated: 2026-04-19
 
 - Co-author: [[sources/cnn-tenogenic-differentiation-cmpb-2021]] (CMPB 2021) — CNN classification of BMSCs/tenocytes/chondrocytes; contributed to the deep learning implementation and evaluation
 - Co-author: [[sources/fpga-bnn-viscoplastic-mrc-2025]] (MRC 2025) — Binary Neural Network on FPGA (PYNQ Z2) for viscoplastic Lemaitre–Chaboche FEM; contributed to the BNN architecture and/or FPGA deployment
+- Co-author: [[sources/sustainable-neuromorphic-fem-npjai-2026]] (npj AI 2026) — GNN-based FEM surrogate (DI-GNS) for crash simulation; responsible for data-driven GNN models and validation
 
 ## Research context
 
