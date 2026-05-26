@@ -3,7 +3,7 @@ title: "Neural Network-Enhanced FEM"
 type: concept
 tags: [FEM, neural-networks, surrogate-model, computational-mechanics, stiffness, constitutive-law]
 created: 2026-04-06
-updated: 2026-04-07
+updated: 2026-05-26
 ---
 **A family of methods that replace part of the classical Finite Element Method pipeline with trained neural networks to accelerate nonlinear structural simulations.**
 
@@ -14,9 +14,12 @@ Classical FEM for nonlinear problems is iterative and expensive: at each load in
 
 | Level | What is replaced | NN input → output |
 |-------|-----------------|-------------------|
-| **Constitutive law** | Stress–strain mapping at Gauss points | strain (history) → stress + material tangent |
+| **Complete BVP (GNN surrogate)** | Entire FEM model | mesh + BCs → full field variables |
 | **Stiffness matrix** | Full element tangent stiffness | strain increment → internal force + stiffness |
+| **Constitutive law** | Stress–strain mapping at Gauss points | strain (history) → stress + material tangent |
 | **Time integration** | Implicit corrector iterations | state variables → converged increment |
+
+The GNN surrogate tier (complete BVP replacement) was introduced formally in [[sources/sustainable-neuromorphic-fem-npjai-2026]] via the DI-GNS (Dynamics Informed Graph Network-based Solver). It is the most energy-saving option (>99% vs classical FEM) but BVP-specific and requires retraining for different geometries. See [[concepts/neuromorphic-computing]] for CO₂ quantification.
 
 ## Training strategy
 - Data generated from classical FEM simulations or experiments.
@@ -54,4 +57,4 @@ Three hardware platforms have now been explored:
 - BNN hybrid architecture (encoder-decoder) needed for real-valued regression on FPGA.
 
 ## See also
-[[concepts/sobolev-training]], [[concepts/stiffness-matrix-replacement]], [[concepts/physics-informed-neural-networks]], [[concepts/recurrent-neural-networks-in-mechanics]], [[concepts/spiking-neural-networks]], [[concepts/binary-neural-networks]], [[concepts/fpga-acceleration-nn]], [[Saurabh Balkrishna Tandale]]
+[[concepts/sobolev-training]], [[concepts/stiffness-matrix-replacement]], [[concepts/physics-informed-neural-networks]], [[concepts/recurrent-neural-networks-in-mechanics]], [[concepts/spiking-neural-networks]], [[concepts/binary-neural-networks]], [[concepts/fpga-acceleration-nn]], [[concepts/neuromorphic-computing]], [[Saurabh Balkrishna Tandale]], [[sources/sustainable-neuromorphic-fem-npjai-2026]]

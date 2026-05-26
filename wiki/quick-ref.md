@@ -3,7 +3,7 @@ title: "Quick Reference"
 type: concept
 tags: [reference, lookup, performance]
 created: 2026-04-07
-updated: 2026-04-19
+updated: 2026-05-26
 ---
 **Flat facts table — primary grep target for queries. Update on every ingest.**
 
@@ -28,6 +28,8 @@ updated: 2026-04-19
 | dissertation-sustainable-brain-inspired-2024 | 2024 | PhD Diss. (RWTH) | ANN → RNN → SNN (full framework) | unified FEM surrogate framework | Loihi / Xylo-Av2 |
 | fpga-bnn-viscoplastic-mrc-2025 | 2025 | MRC | BNN (binary weights/activations) | 60% faster than CPU; 26% faster than RTX 4090 | FPGA (PYNQ Z2) |
 | meta-learning-hybrid-spiking-npj-2026 | 2026 | NPJ Unconv. | HSN + MAML | meta-learned FEM initialisation | Intel Loihi 2 |
+| biologically-plausible-rsnn-cmame-2026 | 2026 | CMAME | ALIF RSNN + LMU-RSNN (e-prop / hybrid BPTT) | e-prop online learning; rheological analogy | RTX 5000 Ada GPU (training) |
+| sustainable-neuromorphic-fem-npjai-2026 | 2026 | npj AI | GNN (DI-GNS) + SNN (Gauss) + FPGA BNN | >99% energy; 92% total reduction; CO₂ quantified | Loihi / Xylo / Speck / FPGA |
 | cnn-tenogenic-recognition-cdbme-2020 | 2020 | CDBME | CNN | BMSC tenogenic recognition proof-of-concept | CPU/GPU |
 | cnn-tenogenic-differentiation-cmpb-2021 | 2021 | CMPB | 4 CNNs (incl. MobileNet) | >91% accuracy; Android deployment | Mobile (Android) |
 
@@ -41,6 +43,8 @@ updated: 2026-04-19
 | Intel Loihi | spiking-rnn-neuromorphic-cmame-2023, dissertation |
 | Intel Loihi 2 | meta-learning-hybrid-spiking-npj-2026 |
 | Innatera Xylo-Av2 | spiking-nn-viscoplastic-fem-cmame-2024, snn-engineering-mechanics-ewco-2024, dissertation |
+| SynSense Xylo / Speck | sustainable-neuromorphic-fem-npjai-2026 |
+| Loihi (emulator) | sustainable-neuromorphic-fem-npjai-2026 |
 | FPGA (PYNQ Z2 / Xilinx) | fpga-bnn-viscoplastic-mrc-2025 |
 | Mobile (Android) | cnn-tenogenic-differentiation-cmpb-2021 |
 
@@ -53,7 +57,7 @@ updated: 2026-04-19
 | 1 — Smart stiffness | 2021–2022 | ANN/LSTM stiffness matrix replacement; Sobolev training | smart-stiffness-1d, intelligent-stiffness, lstm-stiffness-plate |
 | 2 — Physics-based self-learning | 2022–2024 | RNN material integration; physics loss; REIIS | physics-based-rnn, lumbar-spine, rnn-cnn-shock-wave, rnn-plane-stress-damage |
 | 3 — Neuromorphic / sustainable AI | 2023–2024 | SNN → neuromorphic chips; energy efficiency | spiking-rnn-neuromorphic, spiking-nn-viscoplastic, snn-engineering-mechanics, snn-nonlinear-regression |
-| 4 — Meta-learning + hardware diversification | 2025–2026 | MAML/HSN; FPGA+BNN; CNN cell imaging | meta-learning-hybrid-spiking (main), fpga-bnn-viscoplastic (4a), cnn-tenogenic + cell-preserving-chondrocyte (4b) |
+| 4 — Meta-learning + hardware diversification | 2025–2026 | MAML/HSN; FPGA+BNN; CNN cell imaging; e-prop/ALIF; sustainable FEM synthesis | meta-learning-hybrid-spiking (main), fpga-bnn-viscoplastic (4a), cnn-tenogenic + cell-preserving-chondrocyte (4b), biologically-plausible-rsnn-cmame-2026 (4c), sustainable-neuromorphic-fem-npjai-2026 (4d) |
 | Synthesis | 2024 | PhD dissertation unifying Phases 1–3 | dissertation-sustainable-brain-inspired |
 
 ---
@@ -100,6 +104,22 @@ updated: 2026-04-19
 | Speedup (IJNME 2022, truss stiffness replacement) | 35.11% | intelligent-stiffness-plate-beam-ijnme-2022 | [[sources/intelligent-stiffness-plate-beam-ijnme-2022]] — Table 5 |
 | Speedup (IJNME 2022, beam stiffness replacement) | 41.14% | intelligent-stiffness-plate-beam-ijnme-2022 | [[sources/intelligent-stiffness-plate-beam-ijnme-2022]] — Table 7 |
 | Speedup (IJNME 2022, plate LSTM material) | 64.57% | intelligent-stiffness-plate-beam-ijnme-2022 | [[sources/intelligent-stiffness-plate-beam-ijnme-2022]] — Table 5 |
+| e-prop MSE test (rheological) | 0.00273 (440 ep) | biologically-plausible-rsnn-cmame-2026 | Table B.2, p.19 |
+| BPTT MSE test (rheological) | 0.00165 (180 ep) | biologically-plausible-rsnn-cmame-2026 | Table B.2, p.19 |
+| Non-spiking MSE test (rheological) | 0.00335 (230 ep) | biologically-plausible-rsnn-cmame-2026 | Table B.2, p.19 |
+| e-prop hybrid MSE test (shock tube) | 0.0376 (1220 ep) | biologically-plausible-rsnn-cmame-2026 | Table B.2, p.19 |
+| BPTT MSE test (shock tube) | 0.0155 (940 ep) | biologically-plausible-rsnn-cmame-2026 | Table B.2, p.19 |
+| e-prop epochs overhead vs BPTT (rheological) | ~2.4× more epochs | biologically-plausible-rsnn-cmame-2026 | Table B.2, p.19 |
+| GNN crash sim energy vs FEM CPU | 1.25 J vs ~5.29 kWh (>99% reduction) | sustainable-neuromorphic-fem-npjai-2026 | p.3 |
+| Loihi vs CPU: matrix-vector multiplication | 1/300,000 energy | sustainable-neuromorphic-fem-npjai-2026 | Fig. 1b/c, pp.1-2 |
+| SLSTM+dense simulation energy | 4 kWh vs 303.4 kWh (LSTM-dense) | sustainable-neuromorphic-fem-npjai-2026 | Table 1, p.4 |
+| CO₂ (SLSTM hybrid crash sim) | 115 kg → 4 kg | sustainable-neuromorphic-fem-npjai-2026 | Table 1, p.5 |
+| SNN Gauss-point inference (Loihi vs i7) | 14.3 nJ vs 435,488 nJ | sustainable-neuromorphic-fem-npjai-2026 | Table 2, p.7 |
+| SNN Gauss-point CO₂ savings | 5.1 kg per crash sim | sustainable-neuromorphic-fem-npjai-2026 | p.7 |
+| Total energy reduction (SNN + FPGA SpMV) | 92% | sustainable-neuromorphic-fem-npjai-2026 | Fig. 9c, p.7 |
+| Xylo vs CPU (material law) | 8.0 nJ vs 25,289 nJ (3,161×) | sustainable-neuromorphic-fem-npjai-2026 | Fig. 12, p.9 |
+| Xylo vs GPU (material law) | 8.0 nJ vs 892.4 nJ (111.5×) | sustainable-neuromorphic-fem-npjai-2026 | Fig. 12, p.9 |
+| FPGA BNN inference time | 1.34 ms (FPGA) vs 1.83 ms (GPU) vs 3.41 ms (CPU) | sustainable-neuromorphic-fem-npjai-2026 | p.8 |
 
 ---
 
@@ -148,14 +168,15 @@ See [[concepts/lemaitre-chaboche-parameters]] for the full parameter table and p
 
 | Concept | Sources |
 |---------|---------|
-| neural-network-enhanced-fem | smart-stiffness-1d, intelligent-stiffness, physics-based-rnn, lstm-stiffness, spiking-rnn, spiking-nn-viscoplastic, snn-engineering-mechanics, rnn-plane-stress-damage, fpga-bnn, meta-learning-hybrid-spiking, dissertation |
 | sobolev-training | smart-stiffness-1d, intelligent-stiffness, lstm-stiffness-plate-pamm |
 | stiffness-matrix-replacement | smart-stiffness-1d, intelligent-stiffness, lstm-stiffness-plate-pamm |
 | physics-informed-neural-networks | physics-based-rnn, spiking-nn-viscoplastic, snn-engineering-mechanics, rnn-plane-stress-damage |
 | self-learning-nn | physics-based-rnn, spiking-nn-viscoplastic, snn-engineering-mechanics, rnn-plane-stress-damage, meta-learning-hybrid-spiking |
 | recurrent-neural-networks-in-mechanics | physics-based-rnn, lstm-stiffness, lumbar-spine, rnn-cnn-shock-wave, rnn-plane-stress-damage |
-| spiking-neural-networks | spiking-rnn-neuromorphic, spiking-nn-viscoplastic, snn-engineering-mechanics, rnn-plane-stress-damage, snn-nonlinear-regression, meta-learning-hybrid-spiking |
-| neuromorphic-computing | spiking-rnn-neuromorphic, spiking-nn-viscoplastic, snn-engineering-mechanics, snn-nonlinear-regression, meta-learning-hybrid-spiking |
+| spiking-neural-networks | spiking-rnn-neuromorphic, spiking-nn-viscoplastic, snn-engineering-mechanics, rnn-plane-stress-damage, snn-nonlinear-regression, meta-learning-hybrid-spiking, biologically-plausible-rsnn-cmame-2026, sustainable-neuromorphic-fem-npjai-2026 |
+| neuromorphic-computing | spiking-rnn-neuromorphic, spiking-nn-viscoplastic, snn-engineering-mechanics, snn-nonlinear-regression, meta-learning-hybrid-spiking, sustainable-neuromorphic-fem-npjai-2026 |
+| e-prop | biologically-plausible-rsnn-cmame-2026 |
+| neural-network-enhanced-fem | smart-stiffness-1d, intelligent-stiffness, physics-based-rnn, lstm-stiffness, spiking-rnn, spiking-nn-viscoplastic, snn-engineering-mechanics, rnn-plane-stress-damage, fpga-bnn, meta-learning-hybrid-spiking, dissertation, sustainable-neuromorphic-fem-npjai-2026 |
 | viscoplasticity-modelling | physics-based-rnn, spiking-nn-viscoplastic, rnn-plane-stress-damage, fpga-bnn, meta-learning-hybrid-spiking |
 | binary-neural-networks | fpga-bnn-viscoplastic-mrc-2025 |
 | meta-learning-maml | meta-learning-hybrid-spiking-npj-2026 |
@@ -186,6 +207,12 @@ See [[concepts/lemaitre-chaboche-parameters]] for the full parameter table and p
 | Lemaitre–Chaboche | — | Classical viscoplastic constitutive law with isotropic/kinematic hardening; the material law replaced by NN in most papers | physics-based-rnn, spiking-nn-viscoplastic, fpga-bnn, meta-learning |
 | Sobolev training | — | Loss = function error + weighted derivative error; trains NN on force AND stiffness simultaneously | smart-stiffness-1d, intelligent-stiffness, lstm-stiffness |
 | Pseudo-explicit | — | Integration scheme where implicit corrector is approximated explicitly by SNN, reducing Newton–Raphson iterations | snn-engineering-mechanics-ewco-2024 |
+| e-prop | Eligibility propagation | Biologically plausible local online learning rule for RSNNs; approximates BPTT with eligibility traces; O(n) memory (not O(nT)) | biologically-plausible-rsnn-cmame-2026 |
+| ALIF | Adaptive-threshold Leaky Integrate-and-Fire | LIF extension with dynamic threshold that rises after each spike; 2D hidden state [v, a] | biologically-plausible-rsnn-cmame-2026 |
+| RSNN | Recurrent Spiking Neural Network | SNN with recurrent connections; richer temporal processing than feedforward SNNs | biologically-plausible-rsnn-cmame-2026 |
+| DI-GNS | Dynamics Informed Graph Network-based Solver | GATv2Conv GNN FEM surrogate with physics-conditioning loss; replaces complete BVP | sustainable-neuromorphic-fem-npjai-2026 |
+| SLMU | Spiking Legendre Memory Unit | LMU with spiking (ALIF/LIF) hidden state; combines LMU memory with SNN sparsity | sustainable-neuromorphic-fem-npjai-2026, spiking-rnn-neuromorphic-cmame-2023 |
+| GATv2Conv | Graph Attention Network v2 Convolution | Dynamic attention mechanism for GNN; fixes static attention limitation of original GAT | sustainable-neuromorphic-fem-npjai-2026 |
 | BMSC | Bone Marrow Stem Cell | Multipotent stem cells; classified by CNN into tenocyte/chondrocyte/BMSC in cell imaging thread | cnn-tenogenic papers |
 | YoloV8 | — | Object detection/instance segmentation model; used for chondrocyte classification in PAMM 2024 | cell-preserving-chondrocyte-pamm-2024 |
 
@@ -267,6 +294,10 @@ Strict normalisation layer for queries. Use this to map user wording to canonica
 | Constitutive law / integration | constitutive law; constitutive model; constitutive integration; material law; material model | [[concepts/viscoplasticity-modelling]], [[concepts/nn-generation-replacement-levels]] | Gauss-point-level routing; distinguishes from element-level stiffness replacement. |
 | Transfer learning | fine-tuning; pre-trained; frozen layers; domain adaptation; weight transfer | [[concepts/transfer-learning]] | Contrasted with MAML in FEM context and with self-learning in deployment context. |
 | Bounded softplus | bounded activation; softplus clipping; bounded output; admissible range activation | [[concepts/bounded-softplus-activation]], [[concepts/solver-strategies-at-gaussian-points]] | HSN output layer ensuring Δεₚ ∈ [a,b]; links to solver convergence guarantee. |
+| E-prop / eligibility propagation | e-prop; eligibility propagation; eligibility trace; biologically plausible learning; local learning rule; online learning | [[concepts/e-prop]], [[sources/biologically-plausible-rsnn-cmame-2026]] | Canonical term for the local online SNN training rule introduced in Bhaskaran 2026. |
+| ALIF neuron | adaptive LIF; adaptive threshold; adaptive spiking neuron; ALIF | [[concepts/spiking-neural-networks]], [[sources/biologically-plausible-rsnn-cmame-2026]] | ALIF = Adaptive-threshold LIF; 2D hidden state; better temporal memory than standard LIF. |
+| DI-GNS | Dynamics Informed Graph Network Solver; graph surrogate; GNN FEM surrogate; attention GNN FEM | [[sources/sustainable-neuromorphic-fem-npjai-2026]], [[concepts/neural-network-enhanced-fem]] | Full-BVP GNN surrogate with physics conditioning; most energy-efficient tier. |
+| Neuromorphic FEM CO₂ | CO2 savings; carbon footprint; sustainable FEM; energy reduction FEM | [[sources/sustainable-neuromorphic-fem-npjai-2026]], [[concepts/neuromorphic-computing]] | Go here for quantified CO₂ comparisons across tiers (GNN, SNN Gauss, FPGA). |
 
 ---
 
@@ -300,6 +331,12 @@ Broad topic routing after term normalisation. Exact aliases and spelling variant
 | transfer learning, fine-tuning, frozen layers, domain adaptation, pre-trained weights | [[concepts/transfer-learning]], [[concepts/meta-learning-maml]] |
 | bounded softplus, admissible interval, output clipping, convergence guarantee, activation bounds | [[concepts/bounded-softplus-activation]], [[concepts/solver-strategies-at-gaussian-points]] |
 | phase 4, meta-learning, MAML, HSN, Loihi 2, 2026 | overview Phase 4; meta-learning-hybrid-spiking-npj-2026, [[concepts/meta-learning-maml]], [[concepts/bounded-softplus-activation]] |
+| e-prop, eligibility propagation, biologically plausible learning, online learning RSNN | [[concepts/e-prop]], [[sources/biologically-plausible-rsnn-cmame-2026]] |
+| ALIF, adaptive threshold neuron, adaptive LIF | [[concepts/spiking-neural-networks]], [[sources/biologically-plausible-rsnn-cmame-2026]] |
+| rheological model analogy, LIF analogy, Maxwell element neuron | [[sources/biologically-plausible-rsnn-cmame-2026]] |
+| DI-GNS, graph surrogate FEM, GNN crash, GATv2, attention FEM | [[sources/sustainable-neuromorphic-fem-npjai-2026]], [[concepts/neural-network-enhanced-fem]] |
+| CO2 emissions FEM, neuromorphic sustainability, carbon footprint AI simulation | [[sources/sustainable-neuromorphic-fem-npjai-2026]], [[concepts/neuromorphic-computing]] |
+| Bhaskaran, npj AI 2026, Stoffel npj AI | [[sources/biologically-plausible-rsnn-cmame-2026]], [[sources/sustainable-neuromorphic-fem-npjai-2026]] |
 
 ---
 

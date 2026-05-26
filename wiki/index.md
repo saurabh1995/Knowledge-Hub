@@ -1,5 +1,5 @@
 # KnowledgeHub Index
-_Last updated: 2026-04-19 — 50 pages total_
+_Last updated: 2026-05-26 — 62 pages total_
 
 ## Overview
 - [[Overview]] — evolving synthesis of all knowledge
@@ -25,8 +25,10 @@ _Last updated: 2026-04-19 — 50 pages total_
 | [[sources/meta-learning-hybrid-spiking-npj-2026]] | Hybrid Spiking Neurons (HSN) + MAML meta-learning for physics-based FEM solvers; Loihi 2 | 2026 | MAML, HSN, meta-learning |
 | [[sources/cnn-tenogenic-recognition-cdbme-2020]] | Early CNN proof-of-concept for BMSC tenogenic differentiation recognition (conference paper) | 2020 | CNN, stem-cell, BMSC |
 | [[sources/cnn-tenogenic-differentiation-cmpb-2021]] | 4 CNN architectures classify BMSCs/tenocytes/chondrocytes; >91% accuracy; Android deployment | 2021 | CNN, stem-cell, tenogenesis, smartphone |
+| [[sources/biologically-plausible-rsnn-cmame-2026]] | ALIF RSNN + e-prop learning; rheological analogy with LIF; hybrid e-prop/BPTT for LMU-RSNN; shock tube | 2026 | RSNN, ALIF, e-prop, LMU, CMAME |
+| [[sources/sustainable-neuromorphic-fem-npjai-2026]] | Three-tier sustainable FEM: DI-GNS GNN + physics SNN at Gauss points + FPGA BNN; CO₂ quantified | 2026 | GNN, DI-GNS, SNN, FPGA, CO2, npj-AI |
 
-## Entities (9)
+## Entities (13)
 | Page | Type | Summary |
 |------|------|---------|
 | [[Saurabh Balkrishna Tandale]] | person | PostDoc at RWTH Aachen; NN-enhanced FEM, SNN, neuromorphic computing; 17 publications in wiki |
@@ -37,9 +39,13 @@ _Last updated: 2026-04-19 — 50 pages total_
 | [[Gözde Dursun]] | person | Lead author on cell-imaging CNN papers (CDBME 2020, CMPB 2021) |
 | [[Hyun Lee]] | person | Lead author on chondrocyte YoloV8 paper (PAMM 2024) |
 | [[Nadja Blomeyer]] | person | Co-first author on lumbar spine biomechanics RNN paper (ABME 2023) |
-| [[Rutwik Gulakala]] | person | Recurring co-author across FEM, cell imaging, and FPGA papers |
+| [[Rutwik Gulakala]] | person | Recurring co-author across FEM, cell imaging, FPGA, and GNN papers |
+| [[Vaishnav Bhaskaran]] | person | Lead author CMAME 2026 (ALIF + e-prop); IAM RWTH Aachen |
+| [[Markus Diesmann]] | person | Professor FZ Jülich IAS-6; neuroscience co-author CMAME 2026 |
+| [[Agnes Korcsak-Gorzo]] | person | Researcher FZ Jülich IAS-6; neuroscience co-author CMAME 2026 |
+| [[Abigail Morrison]] | person | Professor FZ Jülich IAS-6; neuroscience co-author CMAME 2026 |
 
-## Concepts (20)
+## Concepts (21)
 | Page | Summary |
 |------|---------|
 | [[concepts/neural-network-enhanced-fem]] | Replacing FEM subroutines (stiffness, material integration) with trained NNs for faster simulations |
@@ -62,3 +68,4 @@ _Last updated: 2026-04-19 — 50 pages total_
 | [[concepts/solver-strategies-at-gaussian-points]] | Evolution from classical iterative solvers (Newton–Raphson, Pegasus) to self-learning and MAML-based NN solvers |
 | [[concepts/transfer-learning]] | Fine-tuning of pre-trained NN for new tasks; contrasted with MAML; requires ~30 sequences vs 5 for MAML in FEM |
 | [[concepts/bounded-softplus-activation]] | Bounded output activation for HSN ensuring Δεₚ stays within bracketing interval; convergence guarantee for Gauss-point solvers |
+| [[concepts/e-prop]] | Eligibility propagation: biologically plausible local online learning rule for RSNNs; approximates BPTT via eligibility traces |

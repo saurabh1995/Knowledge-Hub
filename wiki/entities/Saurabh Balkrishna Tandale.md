@@ -3,7 +3,7 @@ title: "Saurabh Balkrishna Tandale"
 type: entity
 tags: [person, author, computational-mechanics, machine-learning, FEM, SNN]
 created: 2026-04-06
-updated: 2026-04-07
+updated: 2026-05-26
 ---
 **Researcher at RWTH Aachen University specialising in neural network-enhanced finite element methods and neuromorphic computing for engineering mechanics.**
 
@@ -28,10 +28,11 @@ Four overlapping research threads:
 - **Nadja Blomeyer** — co-first author on ABME 2023 (biomechanics)
 - **Rutwik Gulakala** — recurring co-author across FEM, cell imaging, and FPGA papers
 - **Gözde Dursun** — lead author on CNN cell-imaging papers (2020–2021)
-- **Vasileios Polydoras** — lead author on FPGA BNN paper (2025)
+- **Vasileios Polydoras** — lead author on FPGA BNN paper (2025); co-author npj AI 2026
 - **Hyun Lee** — lead author on chondrocyte dedifferentiation paper (2024)
-
-_Note: no separate entity pages exist for these collaborators._
+- **Vaishnav Bhaskaran** — first author on CMAME 2026 (ALIF + e-prop)
+- **Rutwik Gulakala** — co-author npj AI 2026 (GNN crash surrogate)
+- **Agnes Korcsak-Gorzo**, **Abigail Morrison**, **Markus Diesmann** — FZ Jülich neuroscience collaborators (CMAME 2026)
 
 ## Publication list (in wiki)
 | Year | Venue | Role | Wiki page |
@@ -53,6 +54,8 @@ _Note: no separate entity pages exist for these collaborators._
 | 2024 | PhD Dissertation | author | [[sources/dissertation-sustainable-brain-inspired-2024]] |
 | 2025 | MRC | co-author/supervisor | [[sources/fpga-bnn-viscoplastic-mrc-2025]] |
 | 2026 | NPJ Unconv. | first author | [[sources/meta-learning-hybrid-spiking-npj-2026]] |
+| 2026 | CMAME | co-author / conceptualisation | [[sources/biologically-plausible-rsnn-cmame-2026]] |
+| 2026 | npj AI | co-author / physics-based SNN | [[sources/sustainable-neuromorphic-fem-npjai-2026]] |
 
 ## See also
-[[concepts/neural-network-enhanced-fem]], [[concepts/spiking-neural-networks]], [[concepts/self-learning-nn]], [[concepts/neuromorphic-computing]], [[concepts/cnn-cell-imaging]], [[concepts/binary-neural-networks]]
+[[concepts/neural-network-enhanced-fem]], [[concepts/spiking-neural-networks]], [[concepts/self-learning-nn]], [[concepts/neuromorphic-computing]], [[concepts/cnn-cell-imaging]], [[concepts/binary-neural-networks]], [[concepts/e-prop]]

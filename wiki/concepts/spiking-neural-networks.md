@@ -3,7 +3,7 @@ title: "Spiking Neural Networks"
 type: concept
 tags: [SNN, neuromorphic, third-generation, LIF, RLIF, LMU, energy-efficiency, spikes]
 created: 2026-04-06
-updated: 2026-04-15
+updated: 2026-05-26
 ---
 **Third-generation neural networks that communicate through discrete spike signals, enabling energy-efficient deployment on neuromorphic hardware.**
 
@@ -34,11 +34,27 @@ updated: 2026-04-15
 - Spiking variant of the Legendre Memory Unit — compresses long sequences into a memory buffer using spike-based communication.
 - Used in: EWCO 2024, NPJ 2024.
 
+### ALIF (Adaptive-threshold Leaky Integrate-and-Fire)
+- Extends LIF with a dynamic threshold: after each spike, the threshold A rises and decays back exponentially to baseline $v_{\text{th}}$ over time constant $\tau_a$.
+- Two-dimensional hidden state: membrane potential $v^t_j$ and threshold adaptation $a^t_j$.
+- Provides richer temporal memory than LIF — threshold history acts as an intrinsic memory trace.
+- Used in: CMAME 2026 (Bhaskaran et al.) for both single-layer RSNN and LMU-RSNN architectures.
+- Dynamics: $v^{t+1}_j = \alpha v^t_j + \sum_{i\neq j} W^{\text{rec}}_{ji} z^t_i + \sum_i W^{\text{in}}_{ji} x^{t+1}_i - z^t_j v_{\text{th}}$; threshold $A^t_j = v_{\text{th}} + \beta a^t_j$; adaptation $a^{t+1}_j = \rho a^t_j + z^t_j$.
+
 ### HSN (Hybrid Spiking Neuron)
 - New model introduced in NPJ 2026: unlike LIF, outputs a **real-valued** (not binary) activation when active, and zero when inactive.
 - Combines sparsity of third-generation models with the continuous output needed for regression tasks.
 - Deployable on Loihi 2 (32-bit integer outputs).
 - Used in: NPJ 2026.
+
+## Learning rules for SNNs
+
+| Rule | Type | Memory complexity | Biologically plausible | Used in |
+|------|------|------------------|----------------------|---------|
+| BPTT | Global, non-causal | O(nT) | No | All papers up to CMAME 2026 |
+| e-prop | Local, online, causal | O(n) | Yes | CMAME 2026 (Bhaskaran) |
+
+E-prop uses eligibility traces (local synapse-level memory) and broadcast learning signals rather than backpropagating global gradients. Trade-off: more epochs needed but memory does not scale with sequence length. See [[concepts/e-prop]] for full formulation.
 
 ## Autoencoding strategy
 Because SNNs produce binary outputs, a hybrid autoencoding approach is used to interface with real-valued FEM data:
@@ -54,6 +70,8 @@ Used in: CMAME 2023, CMAME 2024, EWCO 2024, NPJ 2024.
 | CMAME 2024 | Xylo-Av2 (SynSense) | Energy performance |
 | EWCO 2024 | Xylo-Av2 (SynSense) | Energy reduction to ~1/1000 |
 | NPJ 2026 | Loihi 2 | QAT for integer deployment |
+| CMAME 2026 | RTX 5000 Ada (training only) | e-prop + hybrid BPTT; ALIF + LMU-RSNN |
+| npj AI 2026 | Loihi / Xylo / Speck / FPGA | Multi-chip energy benchmarking for FEM |
 
 ## Mathematical formulation
 
@@ -111,4 +129,4 @@ The non-differentiable $\varphi_s$ is replaced by the arcus tangent surrogate du
 $$\widetilde{\varphi}_s'(V) = \frac{1}{\pi}\frac{1}{1+(V\pi)^2}$$
 
 ## See also
-[[concepts/neuromorphic-computing]], [[concepts/sustainable-ai]], [[concepts/self-learning-nn]], [[concepts/recurrent-neural-networks-in-mechanics]], [[sources/spiking-rnn-neuromorphic-cmame-2023]], [[sources/spiking-nn-viscoplastic-fem-cmame-2024]], [[sources/snn-engineering-mechanics-ewco-2024]], [[sources/snn-nonlinear-regression-neuromorphic-npj]], [[sources/meta-learning-hybrid-spiking-npj-2026]]
+[[concepts/neuromorphic-computing]], [[concepts/sustainable-ai]], [[concepts/self-learning-nn]], [[concepts/recurrent-neural-networks-in-mechanics]], [[concepts/e-prop]], [[sources/spiking-rnn-neuromorphic-cmame-2023]], [[sources/spiking-nn-viscoplastic-fem-cmame-2024]], [[sources/snn-engineering-mechanics-ewco-2024]], [[sources/snn-nonlinear-regression-neuromorphic-npj]], [[sources/meta-learning-hybrid-spiking-npj-2026]], [[sources/biologically-plausible-rsnn-cmame-2026]], [[sources/sustainable-neuromorphic-fem-npjai-2026]]

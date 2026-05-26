@@ -3,7 +3,7 @@ title: "Overview"
 type: overview
 tags: [synthesis, computational-mechanics, FEM, SNN, neuromorphic, self-learning]
 created: 2026-04-06
-updated: 2026-04-19
+updated: 2026-05-26
 ---
 **Evolving synthesis of all knowledge in this KnowledgeHub — covering Saurabh Tandale's body of work on neural network-enhanced FEM, neuromorphic computing, FPGA acceleration, and CNN-based cell imaging.**
 
@@ -93,6 +93,20 @@ CNNs applied to phase-contrast microscopy as a replacement for invasive immunost
 
 This thread is an adjacent collaboration (led by Gözde Dursun and Hyun Lee), not core to the FEM programme, but demonstrates the group's broader competency in applied machine learning for biomedical sensing.
 
+### 4c — Biologically plausible learning for RSNNs (CMAME 2026)
+**Paper:** CMAME 2026 ([[sources/biologically-plausible-rsnn-cmame-2026]])
+
+An RWTH–FZ Jülich collaboration (Bhaskaran, Tandale, Polydoras, Korcsak-Gorzo, Morrison, Diesmann, Stoffel) introducing two advances: (i) a mathematical analogy between viscoelastic rheological models and LIF neuron dynamics — both are first-order linear ODEs with leaky integration — providing a physical justification for SNNs in mechanics beyond energy efficiency; (ii) the first application of the **e-prop learning rule** ([[concepts/e-prop]]) to mechanics SNNs, enabling online and memory-efficient learning without storing all hidden states.
+
+Architecture: two-layer ALIF RSNN for viscoelastic data; multi-layer LMU + ALIF RSNN for nonlinear shock tube plate response with hybrid e-prop/BPTT. Key finding: BPTT achieves lower MSE and faster convergence; e-prop gains are in online/neuromorphic-compatible learning.
+
+### 4d — Sustainable neuromorphic FEM synthesis (npj AI 2026)
+**Paper:** npj AI 2026 ([[sources/sustainable-neuromorphic-fem-npjai-2026]])
+
+Lead by Stoffel, with Gulakala (GNN), Polydoras (FPGA), and Tandale (physics-based SNN). The flagship synthesis paper unifying the three hardware tiers for sustainable FEM: (i) **DI-GNS** GNN surrogate replaces the entire FEM model for a known BVP (>99% energy, >99.9% CO₂ reduction for crash simulation vs classical FEM CPU); (ii) physics-based self-learning SNN at Gaussian points provides a generalised, BVP-independent solver (saves 5.1 kg CO₂ per crash sim on Loihi; 92% total energy reduction including FPGA SpMV); (iii) FPGA BNN provides 60% speedup vs CPU.
+
+Key new contributions: SLMU formulation (spiking LMU); GATv2Conv DI-GNS with physics-conditioning; CO₂ quantification for all hardware tiers (0.38 kg/kWh factor, German Environment Agency).
+
 ### The PhD dissertation as consolidation (2024)
 **Source:** [[sources/dissertation-sustainable-brain-inspired-2024]]
 
@@ -109,8 +123,9 @@ The 240-page dissertation (defended Sept 12, 2024) unifies all work from Phases 
 | [[concepts/physics-informed-neural-networks]] | CMAME 2022, MRC 2024, CMAME 2024, EWCO 2024 |
 | [[concepts/self-learning-nn]] | CMAME 2022, MRC 2024, CMAME 2024, EWCO 2024, NPJ 2026 |
 | [[concepts/recurrent-neural-networks-in-mechanics]] | CMAME 2022, PAMM 2022, ABME 2023, CM 2023, MRC 2024 |
-| [[concepts/spiking-neural-networks]] | CMAME 2023, CMAME 2024, EWCO 2024, NPJ 2024, NPJ 2026 |
-| [[concepts/neuromorphic-computing]] | CMAME 2023, CMAME 2024, EWCO 2024, NPJ 2024, NPJ 2026 |
+| [[concepts/spiking-neural-networks]] | CMAME 2023, CMAME 2024, EWCO 2024, NPJ 2024, NPJ 2026, CMAME 2026, npj AI 2026 |
+| [[concepts/neuromorphic-computing]] | CMAME 2023, CMAME 2024, EWCO 2024, NPJ 2024, NPJ 2026, npj AI 2026 |
+| [[concepts/e-prop]] | CMAME 2026 |
 | [[concepts/sustainable-ai]] | CMAME 2023, CMAME 2024, EWCO 2024, NPJ 2024 |
 | [[concepts/viscoplasticity-modelling]] | CMAME 2022, CMAME 2024, EWCO 2024, MRC 2024, NPJ 2026, MRC 2025 |
 | [[concepts/meta-learning-maml]] | NPJ 2026 |

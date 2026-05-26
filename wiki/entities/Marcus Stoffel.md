@@ -3,9 +3,9 @@ title: "Marcus Stoffel"
 type: entity
 tags: [person, supervisor, RWTH-Aachen, viscoplasticity, FEM]
 created: 2026-04-10
-updated: 2026-04-10
+updated: 2026-05-26
 ---
-**Principal supervisor and PI; co-author on all 17 papers in the wiki; established the viscoplastic parameter sets underpinning Tandale's material models.**
+**Principal supervisor and PI; co-author on all 19 papers in the wiki; established the viscoplastic parameter sets underpinning Tandale's material models; lead author on the npj AI 2026 sustainable neuromorphic FEM synthesis paper.**
 
 ## Role
 
@@ -13,11 +13,11 @@ Professor at RWTH Aachen University (Institute of General Mechanics / IAM). PhD 
 
 ## Contribution to wiki papers
 
-Co-author on all 17 papers. Supplied the foundational experimental parameter sets (Lemaitre–Chaboche steel and copper) published in Stoffel (2005) *Mech. Mater.* 37(12) and Stoffel (2005) *ZAMM* 85(9), used as ground-truth material data across the entire research programme.
+Co-author on all 19 papers. Supplied the foundational experimental parameter sets (Lemaitre–Chaboche steel and copper) published in Stoffel (2005) *Mech. Mater.* 37(12) and Stoffel (2005) *ZAMM* 85(9), used as ground-truth material data across the entire research programme.
 
 ## Papers (all wiki sources)
 
-All 17 sources. See [[sources/dissertation-sustainable-brain-inspired-2024]] for the complete programme overview.
+All 19 sources including two new 2026 papers. Notable: lead author on [[sources/sustainable-neuromorphic-fem-npjai-2026]] (npj AI 2026); co-author on [[sources/biologically-plausible-rsnn-cmame-2026]] (CMAME 2026). See [[sources/dissertation-sustainable-brain-inspired-2024]] for the complete programme overview.
 
 ## See also
 
